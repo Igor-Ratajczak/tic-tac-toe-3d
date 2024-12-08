@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { userState } from '../state.svelte.js';
 	let props = $props();
-	let tour = $state('X');
 
 	let width = ['1', '2', '3', '4'];
 	let height = ['a', 'b', 'c', 'd'];
@@ -20,11 +19,12 @@
 		if(board.id === props.id){
 			board.moves.push({
 				id: w + h,
-				text: tour
+				text: userState.tour
 			});
 		}
 		})
-		tour = tour === 'X' ? 'O' : 'X';
+		userState.tour = userState.tour === 'O' ? 'X' : 'O';
+		userState.move++
 
 	};
 </script>
@@ -32,7 +32,7 @@
 <div class="board">
 	{#each height as h, i}
 		{#each width as w}
-			<button class="{getText(w, h) === '' ? '' : getText(w, h) === 'X' ? 'x' : 'o'}"
+			<button class="{getText(w, h) === '' ? '' : getText(w, h) === 'X' ? 'x' : 'o'} rect"
 							onclick={() => changeTour(w,h)}
 							tabindex="{Number(w+i)}"
 							disabled="{!!getText(w, h) }">

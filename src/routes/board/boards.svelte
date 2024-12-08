@@ -2,6 +2,13 @@
 	import { userState } from '../state.svelte.js';
 	import Board from './board.svelte';
 
+	window.addEventListener('click', () => {
+		const board = Array.from(
+			document.querySelectorAll('.boards .rect')
+		).map((rect) => rect.innerHTML)
+		console.log(board);
+	})
+
 
 </script>
 
@@ -14,6 +21,7 @@
 
 <style>
     .boards {
+				grid-row: 2;
         display: grid;
         grid-template: 20px auto / repeat(4, max-content);
         gap: 2em;
