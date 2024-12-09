@@ -32,37 +32,58 @@
 body {
   background-image: -o-linear-gradient(315deg, blue, purple 50%);
   background-image: linear-gradient(135deg, blue, purple 50%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   height: 100vh;
   color: white;
   width: 100vw;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .menu-button {
   cursor: pointer;
   width: 60px;
   height: 60px;
-  text-align: center;
   align-content: center;
+  position: relative;
 
   b {
-    display: none;
-  }
-
-  .icon-container {
-    position: relative;
+    position: absolute;
+    right: -100%;
+    top: 50%;
+    transform: translate(100%, -50%);
     width: max-content;
     height: max-content;
+  }
 
-    .icon {
-      width: 3em;
-      height: 3em;
-      padding: 4px;
-      cursor: pointer;
-      transition: all 0.2s linear;
-      display: grid;
-      place-items: center;
-      fill: black;
+  @media screen and (min-width: 772px) {
+    b {
+      z-index: -1;
+      padding: 1em;
+      top: -75%;
+      right: 50%;
+      transform: translate(50%, -50%);
+      border-radius: 10px;
+      background: #000000;
+      opacity: 0;
+      transition: opacity 1s ease, 1s z-index ease;
+    }
+
+    &:hover b {
+      z-index: 10000;
+      opacity: 1;
+    }
+  }
+  .icon {
+    position: relative;
+    width: 3em;
+    height: 3em;
+    padding: 4px;
+    cursor: pointer;
+    transition: all 0.2s linear;
+    display: grid;
+    place-items: center;
+    fill: black;
 
       &::before {
         content: '';
@@ -90,6 +111,7 @@ body {
         transition: clip-path 0.35s ease-in-out;
       }
 
+    @media screen and (min-width: 772px) {
       &:hover::after {
         clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
       }
@@ -97,40 +119,12 @@ body {
       &:hover {
         transform: scale(1.3);
       }
-
-      svg {
-        width: 40px;
-        height: 40px;
-        z-index: 100;
-      }
     }
 
-    .popup {
-      position: absolute;
-      top: -100%;
-      right: 50%;
-      transform: translate(50%, -50%);
-      width: max-content;
-      display: flex;
-      height: 100%;
-      z-index: -1;
-
-      .popup-content {
-        padding: 10px;
-        border-radius: 10px;
-        background: #000000;
-        opacity: 0;
-        transition: opacity 1s ease;
-      }
+    svg {
+      width: 40px;
+      height: 40px;
+      z-index: 100;
     }
-
-    &:hover .popup {
-      z-index: 10000;
-
-      .popup-content {
-        opacity: 1;
-      }
-    }
-
   }
 }

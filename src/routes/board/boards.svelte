@@ -5,27 +5,33 @@
 	window.addEventListener('click', () => {
 		const board = Array.from(
 			document.querySelectorAll('.boards .rect')
-		).map((rect) => rect.innerHTML)
+		).map((rect) => rect.innerHTML);
 		console.log(board);
-	})
+	});
 
 
 </script>
 
 <div class="boards">
 	{#each userState.boards as board}
-		<p>{board.id}</p>
-		<Board id="{board.id}" moves={board.moves} />
+		<div class="board-container">
+			<p>{board.id}</p>
+			<Board id="{board.id}" moves={board.moves} />
+		</div>
 	{/each}
 </div>
 
 <style>
     .boards {
-				grid-row: 2;
+        grid-row: 3;
         display: grid;
-        grid-template: 20px auto / repeat(4, max-content);
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        grid-auto-rows: minmax(320px, auto);
         gap: 2em;
         text-align: center;
+				width: 100vw;
+				justify-items: center;
+				padding: 2em;
 
         p {
             font-size: 30px;

@@ -2,58 +2,23 @@ export const userState = $state({
 	boards: [
 		{
 			id: 'A',
-			moves: [
-				{
-					id: '4d',
-					text: 'X'
-				},
-				{
-					id: '1a',
-					text: 'O'
-				}
-			]
+			moves: []
 		},
 		{
 			id: 'B',
-			moves: [
-				{
-					id: '3d',
-					text: 'X'
-				},
-				{
-					id: '1b',
-					text: 'O'
-				}
-			]
+			moves: []
 		},
 		{
 			id: 'C',
-			moves: [
-				{
-					id: '2d',
-					text: 'X'
-				},
-				{
-					id: '3c',
-					text: 'O'
-				}
-			]
+			moves: []
 		},
 		{
 			id: 'D',
-			moves: [
-				{
-					id: '1d',
-					text: 'X'
-				},
-				{
-					id: '4d',
-					text: 'O'
-				}
-			]
+			moves: []
 		}
 	],
 	opponent: null,
 	tour: 'X',
-	move: 0
+	move: 0,
+	board: '2D'
 });

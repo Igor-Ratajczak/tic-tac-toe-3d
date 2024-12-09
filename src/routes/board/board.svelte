@@ -36,7 +36,7 @@
 							onclick={() => changeTour(w,h)}
 							tabindex="{Number(w+i)}"
 							disabled="{!!getText(w, h) }">
-				{ getText(w, h)  }
+				{ getText(w, h) || w+h  }
 			</button>
 		{/each}
 	{/each}
@@ -61,6 +61,7 @@
             text-align: center;
             align-content: center;
             font-size: 25px;
+						color: black;
 
 						&.x {
 							color: red;
