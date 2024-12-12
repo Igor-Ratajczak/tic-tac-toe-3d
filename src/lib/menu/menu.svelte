@@ -46,19 +46,17 @@
 
   .menu {
     grid-row: 4;
-    display: flex;
-    gap: 3em;
-    padding: 7em 2em 1em 2em;
-    justify-content: center;
-    flex-direction: column;
+    display: grid;
+    gap: 32px;
+    padding: 50px 20px 20px 20px;
     width: 100vw;
     height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: sticky;
+		bottom: 0;
     background-color: rgba(9, 9, 9, 0.8);
     user-select: none;
 		overflow-y: auto;
+    z-index: 10000;
 
     .close {
       position: absolute;
@@ -69,14 +67,14 @@
     }
 
     @media screen and (min-width: 772px) {
-      position: relative;
-      flex-direction: row;
+     grid-template-columns: repeat(7, 1fr);
       padding: 1em 2em 1em 2em;
       width: max-content;
       height: max-content;
       background-color: #ffffffa6;
       justify-self: center;
       border-radius: 50px;
+			overflow: visible;
 
       .close {
         display: none;
