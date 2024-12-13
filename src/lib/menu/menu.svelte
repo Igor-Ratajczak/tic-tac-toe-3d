@@ -1,11 +1,11 @@
 <script lang="ts">
-	import NewGameFriend from './NewGameFriend.svelte';
-	import NewGameBot from './NewGameBot.svelte';
-	import SaveGame from './SaveGame.svelte';
-	import LoadGame from './LoadGame.svelte';
-	import History from './History.svelte';
-	import Rules from './Rules.svelte';
-	import Settings from './Settings.svelte';
+	import NewGameFriendIcon from './icons/NewGameFriendIcon.svelte';
+	import NewGameBotIcon from './icons/NewGameBotIcon.svelte';
+	import SaveGameIcon from './icons/SaveGameIcon.svelte';
+	import LoadGamesIcon from './icons/LoadGamesIcon.svelte';
+	import HistoryIcon from './icons/HistoryIcon.svelte';
+	import RulesIcon from './icons/RulesIcon.svelte';
+	import SettingsIcon from './icons/SettingsIcon.svelte';
 	import { MediaQuery } from 'svelte/reactivity';
 
 	const large = new MediaQuery('min-width: 772px');
@@ -24,13 +24,13 @@
 		{#if !large.current}
 			<button class="close" onclick="{() => menu = false}">X</button>
 		{/if}
-		<NewGameFriend />
-		<NewGameBot />
-		<SaveGame />
-		<LoadGame />
-		<History />
-		<Rules />
-		<Settings />
+		<NewGameFriendIcon />
+		<NewGameBotIcon />
+		<SaveGameIcon />
+		<LoadGamesIcon />
+		<HistoryIcon />
+		<RulesIcon />
+		<SettingsIcon />
 	</div>
 {/if}
 <style lang="less">
