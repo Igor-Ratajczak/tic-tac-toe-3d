@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getTabIndex, setNewMove, isLastMove } from '$lib/board/logic.svelte';
+	import { getTabIndex, setNewMove, isLastMove } from '$lib/board/logic.svelte.js';
 
 	let props: { board: Board[] } = $props();
 

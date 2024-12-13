@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Board from './board.svelte';
-	import { setAllMoves } from '$lib/board/logic.svelte';
+	import { setAllMoves } from '$lib/board/logic.svelte.js';
 
 
 	const boardsNames = ['A', 'B', 'C', 'D'];
