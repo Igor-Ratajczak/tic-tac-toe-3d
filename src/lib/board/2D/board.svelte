@@ -1,7 +1,10 @@
 <script lang="ts">
-	import { getTabIndex, setNewMove, isLastMove } from '$lib/board/logic.svelte.js';
+	import { getTabIndex, setNewMove } from '$lib/board/logic.svelte.js';
+	import {  userState } from '$lib/state.svelte';
 
 	let props: { board: Board[] } = $props();
+
+	let lastMove = $derived(userState.moves[userState.moves.length - 1]?.id)
 
 </script>
 
@@ -9,7 +12,8 @@
 	{#each props.board as field, i}
 		<button
 			id={field.id}
-			class="{field.text === 'X' ? 'X' : 'O'} rect {isLastMove(field.id) ? 'highlight' : null}"
+			class="{field.text === 'X' ? 'X' : 'O'} rect {lastMove === field.id ? 'highlight' : null}
+{userState.winningFields.includes(field.id) ? 'winning-field' : null}"
 			onclick={() => setNewMove(field)}
 			tabindex="{getTabIndex(field.id.slice(0,1), i)}"
 			disabled="{!!field.text }">
@@ -39,14 +43,39 @@
             font-size: 3em;
             color: black;
 
+						&&.winning-field {
+								box-shadow: inset 0 0 10px 5px rgba(0, 128, 0, 0.75);
+								position: relative;
+
+								&::after {
+										content: '';
+										position: absolute;
+										top: 0;
+										left: 0;
+										width: 100%;
+										height: 100%;
+                    box-shadow: 0 0 10px 10px rgba(0, 128, 0, 0.75);
+								}
+						}
+
             &.highlight {
-                border: 2px solid red;
-                animation: pulse 1.5s infinite ease-in-out;
+                box-shadow: inset 0 0 10px 5px rgba(255, 0, 0, 0.75);
+                position: relative;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    box-shadow: 0 0 10px 10px rgba(255, 0, 0, 0.75);
+                }
             }
 
-						&:focus {
-								outline: 5px solid green
-						}
+            &:focus {
+                outline: 5px solid green
+            }
 
             &.X {
                 color: red;

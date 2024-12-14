@@ -1,5 +1,5 @@
 // Settings walls
-const wallData: Wall[] = [
+export const wallData: Wall[] = [
 	{ x: 0, y: 2, z: 2, rotation: [0, Math.PI, Math.PI], id: 'A' }, // Front
 	{ x: -2, y: 2, z: 0, rotation: [0, Math.PI / 2, Math.PI], id: 'B' }, // Left
 	{ x: 0, y: 2, z: -2, rotation: [0, 0, Math.PI], id: 'C' }, // Back
@@ -7,7 +7,7 @@ const wallData: Wall[] = [
 ];
 
 
-const createWall = (id: string) => {
+export const createWall = (id: string) => {
 	const board: Box[] = [];
 	const lines: Line[] = [];
 

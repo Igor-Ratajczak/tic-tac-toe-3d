@@ -1,15 +1,28 @@
 <script lang="ts">
 	import { T } from '@threlte/core';
-	import {FakeGlowMaterial, OrbitControls, interactivity, Text } from '@threlte/extras';
-	import { BoxGeometry, Color, MeshStandardMaterial } from 'three';
-	import { walls } from '$lib/board/3D/CreateWalls';
+	import { FakeGlowMaterial, OrbitControls, interactivity, Text } from '@threlte/extras';
+	import { BoxGeometry, MeshStandardMaterial } from 'three';
+	import { wallData, createWall } from '$lib/board/3D/CreateWalls';
 	import { setNewMove, setAllMoves, isLastMove } from '$lib/board/logic.svelte';
+	import { userState } from '$lib/state.svelte';
 
-	// Not remove! Interactivity for hover and click
 	interactivity();
 
+	let walls = $state(wallData.map((wall) => ({
+		...wall,
+		...createWall(wall.id),
+	})));
+
 	setAllMoves(walls)
+		if (userState.win) {
+			walls.forEach((wall) => {
+				wall.board.forEach((box) => {
+					box.color = userState.winningFields.includes(box.id) ? 'green' : box.color;
+				});
+			});
+		}
 </script>
+
 
 <T.PerspectiveCamera makeDefault position={[0, 0, 10]}>
 	<OrbitControls enableDamping />
@@ -43,6 +56,7 @@
 				}}
 				onclick={(e: PointerEvent) => {
 					e.stopPropagation();
+					if (!userState.win)
 					setNewMove(box)
 				}}
 				geometry={new BoxGeometry(1, 1, 0.1)}
@@ -58,15 +72,15 @@
 					anchorY="50%"
 				/>
 			</T.Mesh>
-			{#if box.text !== '' && isLastMove(box.id)}
-			<T.Mesh
-				position.x={box.x}
-				position.y={box.y}
-				position.z={box.z}>
-				<FakeGlowMaterial glowColor={box.text === 'X' ? 'red' : 'blue'}/>
-				<T.IcosahedronGeometry args={[1, 1]} />
-			</T.Mesh>
-				{/if}
+			{#if userState.winningFields.includes(box.id) || !userState.win && box.text !== '' && isLastMove(box.id) }
+				<T.Mesh
+					position.x={box.x}
+					position.y={box.y}
+					position.z={box.z}>
+					<FakeGlowMaterial glowColor={userState.win ? 'green' : box.text === 'X' ? 'red' : 'blue'} />
+					<T.IcosahedronGeometry args={[1, 1]} />
+				</T.Mesh>
+			{/if}
 		{/each}
 	</T.Group>
 	<T.Mesh position.x={0}
