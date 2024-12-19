@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Menu from '$lib/menu/menu.svelte';
 	import { userState } from '$lib/state.svelte.js';
+	import Windows from '$lib/window/Windows.svelte';
 	import Game from '$lib/game/Game.svelte';
 
 	let text = $state('Witaj w grze kółko i krzyżyk');
@@ -30,6 +31,7 @@
 	</div>
 	<Game />
 	<Menu />
+	<Windows />
 </div>
 <style lang="less">
   .root {
@@ -61,12 +63,6 @@
         border-bottom: 2px solid red;
         transition: left 0.5s ease-in-out;
       }
-    }
-
-    .board-container {
-      width: 100vw;
-      height: max-content;
-      display: flex;
     }
   }
 </style>
