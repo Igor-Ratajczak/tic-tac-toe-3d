@@ -1,21 +1,24 @@
 <script lang="ts">
-	import Boards2D from '$lib/board/boards.svelte';
-	import Board3D from '$lib/board/3D/Canvas.svelte';
 	import Menu from '$lib/menu/menu.svelte';
 	import { userState } from '$lib/state.svelte.js';
-	import { fly } from 'svelte/transition';
+	import Game from '$lib/game/Game.svelte';
 
 	let text = $state('Witaj w grze kółko i krzyżyk');
 
 	$effect(() => {
 		if (userState.newGame)
-			text = `Ruch ${userState.move} gracza ${userState.playerTurn}`;
+			text = `Ruch ${userState.moves.length} gracza ${userState.playerTurn}`;
+		if (userState.moves.length === 64)
+			text = `Remis`;
+		if (userState.moves.length < 64 && !userState.win)
+			text = `Ruch ${userState.moves.length} gracza ${userState.playerTurn === 'X' ? 'O' : 'X'}`;
+		if (userState.win)
+			text = `Wygrał gracza ${userState.playerTurn}`;
 	});
 
 	const setBoard = (board: '2D' | '3D') => {
 		userState.board = board;
 	};
-
 
 </script>
 
@@ -25,17 +28,7 @@
 		<button onclick="{() => setBoard('2D')}">Plansza 2D</button>
 		<button onclick="{() => setBoard('3D')}">Plansza 3D</button>
 	</div>
-	<div class="board-container">
-		{#if userState.board === '2D'}
-			<div class="2D" in:fly={{ x: -500, duration: 800, delay: 800 }} out:fly={{ x: -800, duration: 800 }}>
-				<Boards2D />
-			</div>
-		{:else}
-			<div class="3D" in:fly={{ x: 500, duration: 800, delay: 800}} out:fly={{ x: 800, duration: 800 }}>
-				<Board3D />
-			</div>
-		{/if}
-	</div>
+	<Game />
 	<Menu />
 </div>
 <style lang="less">
@@ -44,7 +37,7 @@
     grid-template-rows: 60px 40px auto max-content;
     height: 100%;
     justify-items: center;
-		overflow-x: hidden;
+    overflow-x: hidden;
 
     h1 {
       grid-row: 1;

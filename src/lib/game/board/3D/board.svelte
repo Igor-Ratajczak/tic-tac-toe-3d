@@ -2,9 +2,9 @@
 	import { T } from '@threlte/core';
 	import { FakeGlowMaterial, OrbitControls, interactivity, Text } from '@threlte/extras';
 	import { BoxGeometry, MeshStandardMaterial } from 'three';
-	import { wallData, createWall } from '$lib/board/3D/CreateWalls';
-	import { setNewMove, setAllMoves, isLastMove } from '$lib/board/logic.svelte';
-	import { userState } from '$lib/state.svelte';
+	import { wallData, createWall } from '$lib/game/board/3D/CreateWalls';
+	import { setNewMove, setAllMoves, isLastMove } from '$lib/game/board/logic.svelte.js';
+	import { userState } from '$lib/state.svelte.js';
 
 	interactivity();
 
@@ -14,6 +14,7 @@
 	})));
 
 	setAllMoves(walls)
+	$effect(() => {
 		if (userState.win) {
 			walls.forEach((wall) => {
 				wall.board.forEach((box) => {
@@ -21,6 +22,15 @@
 				});
 			});
 		}
+	})
+
+	$effect(() => {
+		walls.forEach(wall => {
+			wall.board.forEach((field) => {
+				userState.moves[userState.moves.length - 1].id === field.id ? (field.text = userState.moves[userState.moves.length - 1].text) : null;
+			});
+		});
+	});
 </script>
 
 
@@ -56,8 +66,8 @@
 				}}
 				onclick={(e: PointerEvent) => {
 					e.stopPropagation();
-					if (!userState.win)
-					setNewMove(box)
+					if (!userState.win && box.text === '')
+					setNewMove(box.id)
 				}}
 				geometry={new BoxGeometry(1, 1, 0.1)}
 				material={new MeshStandardMaterial({ color: box.color })}

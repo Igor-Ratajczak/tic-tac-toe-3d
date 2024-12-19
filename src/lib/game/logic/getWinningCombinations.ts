@@ -27,7 +27,9 @@ const direction: Direction[] = [
 	// Diagonal spanning boards (bottom-right-front to top-left-back, e.g., Ad4 -> Bc3 -> Cb2 -> Da1)
 	{ start: [15], move: 11 },
 	// Vertical line spanning boards (e.g., Aa1 -> Bb1 -> Cc1 -> Dd1)
-	{ start: [0, 1, 2, 3], move: 20 }
+	{ start: [0, 1, 2, 3], move: 20 },
+	// Vertical line spanning boards (e.g., Aa1 -> Bb1 -> Cc1 -> Dd1)
+	{ start: [12, 13, 14, 15], move: 12 }
 ];
 
 function createTable() {

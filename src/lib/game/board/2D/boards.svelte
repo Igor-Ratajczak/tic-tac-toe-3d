@@ -1,6 +1,7 @@
 <script lang="ts">
-	import Board from './board.svelte';
-	import { setAllMoves } from '$lib/board/logic.svelte.js';
+	import Board2D from './board.svelte';
+	import { checkWin, setAllMoves } from '$lib/game/board/logic.svelte.js';
+	import { userState } from '$lib/state.svelte.js';
 
 
 	const boardsNames = ['A', 'B', 'C', 'D'];
@@ -27,6 +28,16 @@
 
 	setAllMoves(boards);
 
+	$effect(() => {
+		if (userState.moves.length > 0) {
+			boards.forEach(board => {
+				board.board.forEach((field) => {
+					userState.moves[userState.moves.length - 1].id === field.id ? (field.text = userState.moves[userState.moves.length - 1].text) : null;
+				});
+			});
+			checkWin(userState.moves);
+		}
+	});
 </script>
 
 {#if boards.length > 0}
@@ -34,7 +45,7 @@
 		{#each boards as board}
 			<div class="board-container">
 				<p>{board.name}</p>
-				<Board board={board.board} />
+				<Board2D board={board.board} />
 			</div>
 		{/each}
 	</div>
