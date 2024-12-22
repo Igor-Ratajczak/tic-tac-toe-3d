@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { T } from '@threlte/core';
-	import { FakeGlowMaterial, OrbitControls, interactivity, Text } from '@threlte/extras';
+	import { Environment, FakeGlowMaterial, interactivity, Text, Text3DGeometry } from '@threlte/extras';
 	import { BoxGeometry, MeshStandardMaterial } from 'three';
 	import { wallData, createWall } from '$lib/game/board/3D/CreateWalls';
 	import { setNewMove, setAllMoves, isLastMove } from '$lib/game/board/logic.svelte.js';
@@ -10,10 +10,10 @@
 
 	let walls = $state(wallData.map((wall) => ({
 		...wall,
-		...createWall(wall.id),
+		...createWall(wall.id)
 	})));
 
-	setAllMoves(walls)
+	setAllMoves(walls);
 	$effect(() => {
 		if (userState.win) {
 			walls.forEach((wall) => {
@@ -22,7 +22,7 @@
 				});
 			});
 		}
-	})
+	});
 
 	$effect(() => {
 		walls.forEach(wall => {
@@ -31,18 +31,34 @@
 			});
 		});
 	});
+
 </script>
-
-
-<T.PerspectiveCamera makeDefault position={[0, 0, 10]}>
-	<OrbitControls enableDamping />
-</T.PerspectiveCamera>
-<T.AmbientLight intensity={1} />
 
 {#each walls as wall}
 	<T.Group
 		position={[wall.x, wall.y, wall.z]}
 		rotation={wall.rotation}>
+		<T.Mesh position={[-0.5,-0.5,0]} rotation.x={Math.PI}>
+			<Text3DGeometry
+				text={wall.id}
+				bevelEnabled="true"
+				bevelOffset={0}
+				bevelSegments={20}
+				bevelSize={0.1}
+				bevelThickness={0.1}
+				size={1}
+				height={0.01}
+				curveSegments={12}
+				depth={0.1}
+				smooth={0.1}
+			/>
+			<T.MeshStandardMaterial
+				color="#FD3F00"
+				toneMapped={false}
+				metalness={1.0}
+				roughness={0.1}
+			/>
+		</T.Mesh>
 		{#each wall.lines as line}
 			<T.Mesh
 				position.x={line.x}
@@ -106,3 +122,4 @@
 					material={new MeshStandardMaterial({ color: 'white' })}>
 	</T.Mesh>
 {/each}
+<Environment url="./shanghai_riverside_1k.hdr" />
