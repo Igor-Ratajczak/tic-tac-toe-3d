@@ -14,6 +14,7 @@
 	$effect(() => {
 		menu = large.current;
 	});
+
 </script>
 {#if !large.current}
 	<button class="open-menu" onclick="{() => menu = true}">|||</button>
@@ -37,10 +38,9 @@
   .open-menu {
     position: absolute;
     top: 5px;
-    right: 10px;
+    right: 30px;
     cursor: pointer;
     font-size: 20px;
-    letter-spacing: -5px;
     transform: rotateZ(90deg);
   }
 
@@ -51,11 +51,11 @@
     padding: 50px 20px 20px 20px;
     width: 100vw;
     height: 100vh;
-    position: sticky;
-		bottom: 0;
+    position: fixed;
+    bottom: 0;
     background-color: rgba(9, 9, 9, 0.8);
     user-select: none;
-		overflow-y: auto;
+    overflow-y: auto;
     z-index: 10000;
 
     .close {
@@ -67,14 +67,14 @@
     }
 
     @media screen and (min-width: 772px) {
-     grid-template-columns: repeat(7, 1fr);
+      grid-template-columns: repeat(7, 1fr);
       padding: 1em 2em 1em 2em;
       width: max-content;
       height: max-content;
       background-color: #ffffffa6;
       justify-self: center;
       border-radius: 50px;
-			overflow: visible;
+      overflow: visible;
 
       .close {
         display: none;

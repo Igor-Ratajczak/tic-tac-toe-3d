@@ -1,4 +1,7 @@
-<div class="menu-button">
+<script lang="ts">
+	import IconContainer from '$lib/menu/icons/IconContainer.svelte';
+</script>
+<IconContainer window="settings">
 	<div class="icon settings-icon">
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 			<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com
@@ -10,7 +13,7 @@
 		</svg>
 	</div>
 	<b>Ustawienia</b>
-</div>
+</IconContainer>
 
 <style lang="less">
   .settings-icon {

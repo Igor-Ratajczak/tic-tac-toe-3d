@@ -1,4 +1,8 @@
-<div class="menu-button">
+<script>
+	import IconContainer from '$lib/menu/icons/IconContainer.svelte';
+</script>
+
+<IconContainer window="history">
 	<div class="icon">
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 			<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com
@@ -9,4 +13,4 @@
 		</svg>
 	</div>
 	<b>Historia</b>
-</div>
+</IconContainer>
