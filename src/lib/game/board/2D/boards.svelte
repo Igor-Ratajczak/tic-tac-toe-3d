@@ -36,6 +36,12 @@
 				});
 			});
 			checkWin(userState.moves);
+		} else {
+			boards.forEach(board => {
+				board.board.forEach((field) => {
+					field.text = '';
+				});
+			});
 		}
 	});
 </script>

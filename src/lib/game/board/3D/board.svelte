@@ -47,14 +47,21 @@
 				});
 			});
 		}
-	});
-
-	$effect(() => {
-		walls.forEach(wall => {
-			wall.board.forEach((field) => {
-				userState.moves[userState.moves.length - 1].id === field.id ? (field.text = userState.moves[userState.moves.length - 1].text) : null;
+		if (userState.moves.length > 0) {
+			walls.forEach(wall => {
+				wall.board.forEach((field) => {
+					if (userState.moves[userState.moves.length - 1].id === field.id) {
+						field.text = userState.moves[userState.moves.length - 1].text;
+					}
+				});
 			});
-		});
+		} else {
+			walls.forEach(wall => {
+				wall.board.forEach((field) => {
+					field.text = '';
+				});
+			});
+		}
 	});
 
 </script>

@@ -3,7 +3,6 @@
 	import { globalSettings, userState } from '$lib/state.svelte.js';
 	import Windows from '$lib/window/Windows.svelte';
 	import Game from '$lib/game/Game.svelte';
-	import { onMount } from 'svelte';
 
 	let text = $state('Witaj w grze kółko i krzyżyk');
 

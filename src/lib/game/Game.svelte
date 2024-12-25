@@ -6,7 +6,7 @@
 	import { bot } from '$lib/game/logic/bot.svelte';
 
 	$effect(() => {
-		if (userState.moves.length < 64 && !userState.win && userState.playerTurn === 'X') {
+		if (userState.opponent === 'bot' && userState.moves.length < 64 && !userState.win && userState.playerTurn === 'X') {
 			bot();
 		}
 	});
