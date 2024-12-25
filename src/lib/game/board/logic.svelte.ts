@@ -15,11 +15,6 @@ export const setAllMoves = (boards: Boards[] | Board3D[]) => {
 	});
 };
 
-export const getTabIndex = (id: string, index: number): number => {
-	const subtract = id === 'A' ? 0 : id === 'B' ? 16 : id === 'C' ? 32 : 48;
-	return index + subtract;
-};
-
 export const setNewMove = (fieldID: string) => {
 	const moves = userState.moves;
 	moves.push({

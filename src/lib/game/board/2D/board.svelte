@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getTabIndex, setNewMove } from '$lib/game/board/logic.svelte.js';
+	import { setNewMove } from '$lib/game/board/logic.svelte.js';
 	import { userState } from '$lib/state.svelte.js';
 
 	let props: { board: Board[] } = $props();
@@ -15,9 +15,9 @@
 			class="rect
 				{field.text === 'X' ? 'X' : 'O'}
 				{lastMove === field.id ? 'highlight' : null}
-				{userState.winningFields.includes(field.id) ? 'winning-field' : null}"
+				{userState.winningFields.includes(field.id) ? `winning-field` : null}"
 			onclick={() => userState.win && field.text === '' ? null : setNewMove(field.id)}
-			tabindex="{getTabIndex(field.id.slice(0,1), i)}"
+			tabindex="-1"
 			disabled="{!!field.text }">
 			{ field.text  }
 		</button>
@@ -31,22 +31,22 @@
         display: grid;
         grid-template-columns: repeat(4, 60px);
         grid-template-rows: repeat(4, 60px);
-        border: 1px solid black;
+        border: 1px solid var(--border-fields);
         aspect-ratio: 1;
         width: calc(60px * 4);
         height: calc(60px * 4);
-        background: var(--background-board);
+        background: var(--background-fields);
 
         button {
-            border: 1px solid black;
+            border: 1px solid var(--border-fields);
             cursor: pointer;
             text-align: center;
             align-content: center;
             font-size: 3em;
             color: black;
 
-            &&.winning-field {
-                box-shadow: inset 0 0 10px 5px rgba(0, 128, 0, 0.75);
+            &&&.winning-field {
+                box-shadow: inset 0 0 10px 5px var(--background-win);
                 position: relative;
 
                 &::after {
@@ -56,12 +56,11 @@
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    box-shadow: 0 0 10px 10px rgba(0, 128, 0, 0.75);
+                    box-shadow: 0 0 10px 10px var(--background-win);
                 }
             }
 
             &.highlight {
-                box-shadow: inset 0 0 10px 5px rgba(255, 0, 0, 0.75);
                 position: relative;
 
                 &::after {
@@ -71,33 +70,37 @@
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    box-shadow: 0 0 10px 10px rgba(255, 0, 0, 0.75);
+                }
+
+                &:is(&.X) {
+                    box-shadow: inset 0 0 10px 5px var(--color-x);
+
+                    &::after {
+                        box-shadow: 0 0 10px 5px var(--color-x);
+                    }
+                }
+
+                &:is(&.O) {
+                    box-shadow: inset 0 0 10px 5px var(--color-o);
+
+                    &::after {
+                        box-shadow: 0 0 10px 5px var(--color-o);
+                    }
                 }
             }
+
 
             &:focus {
                 outline: 5px solid green
             }
 
             &.X {
-                color: red;
+                color: var(--color-x);
             }
 
             &.O {
-                color: blue;
+                color: var(--color-o);
             }
-        }
-    }
-
-    @keyframes pulse {
-        0% {
-            box-shadow: 0 0 0 0 red;
-        }
-        50% {
-            box-shadow: 0 0 15px 5px red;
-        }
-        100% {
-            box-shadow: 0 0 0 0 red;
         }
     }
 </style>
