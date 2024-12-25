@@ -4,21 +4,46 @@
 	import { BoxGeometry, MeshStandardMaterial } from 'three';
 	import { wallData, createWall } from '$lib/game/board/3D/CreateWalls';
 	import { setNewMove, setAllMoves, isLastMove } from '$lib/game/board/logic.svelte.js';
-	import { userState } from '$lib/state.svelte.js';
+	import { globalSettings, userState } from '$lib/state.svelte.js';
 
-	interactivity();
+	let ColorX = $state('#ff0000');
+	let ColorO = $state('#0000ff');
+	let backgroundFields = $state('#ffffff');
+	let borderFields = $state('#000000');
+	let backgroundWin = $state('#008000');
+	let colorHighlight = $state('#ff0000');
 
 	let walls = $state(wallData.map((wall) => ({
 		...wall,
 		...createWall(wall.id)
 	})));
 
+	globalSettings.subscribe((settings) => {
+		const settingsMap = Object.fromEntries(settings.map(setting => [setting.key, setting.value]));
+		ColorX = settingsMap['colorX'];
+		ColorO = settingsMap['colorO'];
+		backgroundFields = settingsMap['backgroundFields'];
+		borderFields = settingsMap['borderFields'];
+		backgroundWin = settingsMap['backgroundWin'];
+		colorHighlight = settingsMap['colorHighlight'];
+
+		walls.forEach((wall) => {
+			wall.board.forEach((box) => {
+				box.color = backgroundFields;
+			});
+		});
+	});
+
 	setAllMoves(walls);
+
+	interactivity();
+
 	$effect(() => {
+		userState.moves;
 		if (userState.win) {
 			walls.forEach((wall) => {
 				wall.board.forEach((box) => {
-					box.color = userState.winningFields.includes(box.id) ? 'green' : box.color;
+					box.color = userState.winningFields.includes(box.id) ? backgroundWin : backgroundFields;
 				});
 			});
 		}
@@ -65,7 +90,7 @@
 				position.y={line.y}
 				position.z={line.z}
 				geometry={new BoxGeometry(line.w, line.h, 0.1)}
-				material={new MeshStandardMaterial({ color: 'black' })}
+				material={new MeshStandardMaterial({ color: borderFields })}
 			/>
 		{/each}
 		{#each wall.board as box}
@@ -75,10 +100,10 @@
 				position.z={box.z}
 				onpointerenter={(e: PointerEvent) => {
 					e.stopPropagation();
-					box.color = 'red';
+					box.color = colorHighlight;
 				}}
 				onpointerleave={() => {
-					box.color = 'white';
+					box.color = userState.winningFields.includes(box.id) ? backgroundWin : backgroundFields;
 				}}
 				onclick={(e: PointerEvent) => {
 					e.stopPropagation();
@@ -92,18 +117,18 @@
 					font="./font.woff"
 					position.z="-0.1"
 					text={box.text}
-					color={box.text === 'X' ? 'red' : 'blue' }
+					color={box.text === 'X' ? ColorX : ColorO }
 					fontSize={1}
 					anchorX="50%"
 					anchorY="50%"
 				/>
 			</T.Mesh>
-			{#if userState.winningFields.includes(box.id) || !userState.win && box.text !== '' && isLastMove(box.id) }
+			{#if userState.winningFields.includes(box.id) || !userState.win && box.text !== '' && userState.moves.length > 0 ? isLastMove(box.id) : null }
 				<T.Mesh
 					position.x={box.x}
 					position.y={box.y}
 					position.z={box.z}>
-					<FakeGlowMaterial glowColor={userState.win ? 'green' : box.text === 'X' ? 'red' : 'blue'} />
+					<FakeGlowMaterial glowColor={userState.win ? backgroundWin : box.text === 'X' ? ColorX : ColorO} />
 					<T.IcosahedronGeometry args={[1, 1]} />
 				</T.Mesh>
 			{/if}

@@ -1,0 +1,127 @@
+<script lang="ts">
+	import { userState } from '$lib/state.svelte.js';
+	import { linear } from 'svelte/easing';
+	import { fade, fly, scale, blur } from 'svelte/transition';
+	import type { Snippet } from 'svelte';
+
+	let visible = $state(true);
+
+	function closeWindow() {
+		userState.window = false;
+		userState.active_window = '';
+		visible = true;
+	}
+
+	type Props = {
+		children: Snippet
+		active_window: string;
+		window: 'large' | 'small'
+		In: 'scale' | 'fade'
+		Out: 'fly' | 'blur'
+	}
+
+	let { children, active_window, window, In, Out }: Props = $props();
+
+	function customScale(node: Element) {
+		return scale(node, { start: 10, duration: 1000, easing: linear });
+	}
+
+	function customFly(node: Element) {
+		return fly(node, { x: 500, y: 500, duration: 1000 });
+	}
+
+
+	let transitionIn = $state(fade);
+	let transitionOut = $state(fade);
+
+	switch (In) {
+		case 'fade':
+			transitionIn = fade;
+			break;
+		case 'scale':
+			transitionIn = customScale;
+	}
+	switch (Out) {
+		case 'fly':
+			transitionOut = customFly;
+			break;
+		case 'blur':
+			transitionOut = blur;
+	}
+</script>
+{#if userState.active_window === active_window}
+	<div class="window {visible ? null : 'hide'} {window}" in:transitionIn
+			 out:transitionOut>
+		<button class="close" onclick={() => closeWindow()}>X</button>
+		<h2 class="title">{userState.active_window}</h2>
+		{@render children()}
+	</div>
+{/if}
+{#if userState.active_window === 'settings'}
+	<button class="preview" onclick={()=>visible = !visible}>{visible ? 'Ukryj' : 'Pokaż'}</button>
+{/if}
+
+<style>
+    .window {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: grid;
+        z-index: 10000;
+        place-items: center;
+        background: rgba(0, 0, 0, 0.84);
+        transition: height 0.5s ease;
+        overflow: hidden;
+        color-scheme: dark;
+
+        &.large {
+            grid-template-rows: 10% 90%;
+        }
+
+        &.small {
+
+            grid-template: 20% 80% / 90% 10%;
+            border: 15px solid orange;
+            border-image: linear-gradient(#041fda, #b2b2fa) 10;
+
+            @media (min-width: 1000px) {
+                width: 40rem;
+                height: 20rem;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        &.hide {
+            height: 0
+        }
+
+        .close {
+            font-size: 5em;
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 10px 30px;
+        }
+
+        h2 {
+            font-size: 5em;
+            font-weight: bold;
+        }
+    }
+
+    .preview {
+        position: absolute;
+        top: calc(100vh - 98%);
+        font-size: 2.5em;
+        left: 2%;
+        border: 2px solid green;
+        padding: 10px;
+        border-radius: 15px;
+        z-index: 10000;
+        background: black;
+    }
+</style>
