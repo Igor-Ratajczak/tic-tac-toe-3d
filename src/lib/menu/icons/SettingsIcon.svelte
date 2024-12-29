@@ -1,5 +1,6 @@
 <script lang="ts">
 	import IconContainer from '$lib/menu/icons/IconContainer.svelte';
+	import { _ } from 'svelte-i18n';
 </script>
 <IconContainer window="settings">
 	<div class="icon settings-icon">
@@ -12,7 +13,7 @@
 			/>
 		</svg>
 	</div>
-	<b>Ustawienia</b>
+	<b>{$_("menu.settings")}</b>
 </IconContainer>
 
 <style lang="less">

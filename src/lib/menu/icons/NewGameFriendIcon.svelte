@@ -1,5 +1,6 @@
 <script>
 	import IconContainer from '$lib/menu/icons/IconContainer.svelte';
+	import { _ } from 'svelte-i18n';
 </script>
 
 <IconContainer window="newGameFriend">
@@ -12,5 +13,5 @@
 			/>
 		</svg>
 	</div>
-	<b>Nowa gra z przyjacielem</b>
+	<b>{$_("menu.newGameFriend")}</b>
 </IconContainer>
