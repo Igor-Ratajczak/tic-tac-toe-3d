@@ -80,7 +80,7 @@
 
     h1 {
       grid-row: 1;
-      font-size: 2.5em;
+      font-size: 2.8em;
       align-content: center;
       padding-right: 5em;
       text-align: center;
