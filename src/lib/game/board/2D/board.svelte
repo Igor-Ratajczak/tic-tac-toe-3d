@@ -16,7 +16,7 @@
 				{field.text === 'X' ? 'X' : 'O'}
 				{lastMove === field.id ? 'highlight' : null}
 				{userState.winningFields.includes(field.id) ? `winning-field` : null}"
-			onclick={() => userState.win && field.text === '' ? null : setNewMove(field.id)}
+			onclick={() => userState.newGame && !userState.win && field.text === '' ? setNewMove(field.id) : null}
 			tabindex="-1"
 			disabled="{!!field.text }">
 			{ field.text  }

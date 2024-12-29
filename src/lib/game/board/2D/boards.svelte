@@ -32,7 +32,12 @@
 		if (userState.moves.length > 0) {
 			boards.forEach(board => {
 				board.board.forEach((field) => {
-					userState.moves[userState.moves.length - 1].id === field.id ? (field.text = userState.moves[userState.moves.length - 1].text) : null;
+					if (userState.isGameLoaded) {
+						const move = userState.moves.find(m => m.id === field.id);
+						field.text = move ? move.text : '';
+					} else {
+						userState.moves[userState.moves.length - 1].id === field.id ? (field.text = userState.moves[userState.moves.length - 1].text) : null;
+					}
 				});
 			});
 			checkWin(userState.moves);

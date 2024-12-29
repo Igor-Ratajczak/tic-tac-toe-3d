@@ -1,12 +1,26 @@
 // See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
 declare global {
+	interface GameHistory {
+		time: string;
+		moves: Move[];
+		opponent: 'player' | 'bot';
+		botDifficulty: 'easy' | 'medium' | 'hard';
+	}
+
+	interface SavedGame {
+		title: string;
+		data: string;
+		state: UserState;
+	}
+
 	interface Settings {
 		key: SettingsKeys;
-		name: string;
 		value: string;
 		defaultValue: string;
 	}
+
+	type BotLevels = 'easy' | 'medium' | 'hard';
 
 	type SettingsKeys =
 		| 'colorX'
@@ -17,11 +31,13 @@ declare global {
 		| 'colorHighlight';
 
 	interface UserState {
+		isGameLoaded: boolean;
 		newGame: boolean;
 		opponent: 'player' | 'bot' | null;
-		playerTurn: string;
+		playerTurn: 'X' | 'O';
+		symbolBot: 'X' | 'O';
 		move: number;
-		board: string;
+		board: '2D' | '3D';
 		botDifficulty: 'easy' | 'medium' | 'hard';
 		moves: Move[];
 		win: boolean;

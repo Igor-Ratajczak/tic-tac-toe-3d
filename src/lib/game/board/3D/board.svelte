@@ -18,8 +18,9 @@
 		...createWall(wall.id)
 	})));
 
-	globalSettings.subscribe((settings) => {
-		const settingsMap = Object.fromEntries(settings.map(setting => [setting.key, setting.value]));
+	$effect(() => {
+		globalSettings;
+		const settingsMap = Object.fromEntries(globalSettings.map(setting => [setting.key, setting.value]));
 		ColorX = settingsMap['colorX'];
 		ColorO = settingsMap['colorO'];
 		backgroundFields = settingsMap['backgroundFields'];
@@ -50,8 +51,13 @@
 		if (userState.moves.length > 0) {
 			walls.forEach(wall => {
 				wall.board.forEach((field) => {
-					if (userState.moves[userState.moves.length - 1].id === field.id) {
-						field.text = userState.moves[userState.moves.length - 1].text;
+					if (userState.isGameLoaded) {
+						const move = userState.moves.find(m => m.id === field.id);
+						field.text = move ? move.text : '';
+					} else {
+						if (userState.moves[userState.moves.length - 1].id === field.id) {
+							field.text = userState.moves[userState.moves.length - 1].text;
+						}
 					}
 				});
 			});
@@ -93,49 +99,43 @@
 		</T.Mesh>
 		{#each wall.lines as line}
 			<T.Mesh
-				position.x={line.x}
-				position.y={line.y}
-				position.z={line.z}
+				position={[line.x,line.y,line.z]}
 				geometry={new BoxGeometry(line.w, line.h, 0.1)}
 				material={new MeshStandardMaterial({ color: borderFields })}
 			/>
 		{/each}
-		{#each wall.board as box}
+		{#each wall.board as field}
 			<T.Mesh
-				position.x={box.x}
-				position.y={box.y}
-				position.z={box.z}
+				position={[field.x,field.y,field.z]}
 				onpointerenter={(e: PointerEvent) => {
 					e.stopPropagation();
-					box.color = colorHighlight;
+					field.color = userState.winningFields.includes(field.id) ? backgroundWin : colorHighlight;
 				}}
 				onpointerleave={() => {
-					box.color = userState.winningFields.includes(box.id) ? backgroundWin : backgroundFields;
+					field.color = userState.winningFields.includes(field.id) ? backgroundWin : backgroundFields;
 				}}
 				onclick={(e: PointerEvent) => {
 					e.stopPropagation();
-					if (!userState.win && box.text === '')
-					setNewMove(box.id)
+					if (userState.newGame && !userState.win && field.text === '')
+					setNewMove(field.id)
 				}}
 				geometry={new BoxGeometry(1, 1, 0.1)}
-				material={new MeshStandardMaterial({ color: box.color })}
+				material={new MeshStandardMaterial({ color: field.color })}
 			>
 				<Text
 					font="./font.woff"
 					position.z="-0.1"
-					text={box.text}
-					color={box.text === 'X' ? ColorX : ColorO }
+					text={field.text}
+					color={field.text === 'X' ? ColorX : ColorO }
 					fontSize={1}
 					anchorX="50%"
 					anchorY="50%"
 				/>
 			</T.Mesh>
-			{#if userState.winningFields.includes(box.id) || !userState.win && box.text !== '' && userState.moves.length > 0 ? isLastMove(box.id) : null }
+			{#if userState.winningFields.includes(field.id) || (!userState.win && field.text !== '' && userState.moves.length > 0 ? isLastMove(field.id) : null) }
 				<T.Mesh
-					position.x={box.x}
-					position.y={box.y}
-					position.z={box.z}>
-					<FakeGlowMaterial glowColor={userState.win ? backgroundWin : box.text === 'X' ? ColorX : ColorO} />
+					position={[field.x,field.y,field.z]}>
+					<FakeGlowMaterial glowColor={userState.win ? backgroundWin : field.text === 'X' ? ColorX : ColorO} />
 					<T.IcosahedronGeometry args={[1, 1]} />
 				</T.Mesh>
 			{/if}

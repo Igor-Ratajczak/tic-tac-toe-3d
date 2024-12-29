@@ -6,11 +6,33 @@
 	import { bot } from '$lib/game/logic/bot.svelte';
 
 	$effect(() => {
-		if (userState.opponent === 'bot' && userState.moves.length < 64 && !userState.win && userState.playerTurn === 'X') {
+		if (userState.newGame && userState.opponent === 'bot' &&
+			userState.moves.length < 64 &&
+			!userState.win &&
+			userState.playerTurn === userState.symbolBot) {
 			bot();
 		}
 	});
 
+	function setGameToHistory() {
+		let gameHistory: GameHistory[] = JSON.parse(localStorage.getItem('history') || '[]');
+
+		gameHistory.push({
+			time: new Date().toLocaleString(),
+			moves: userState.moves,
+			opponent: userState.opponent!,
+			botDifficulty: userState.botDifficulty
+		});
+
+		localStorage.setItem('history', JSON.stringify(gameHistory));
+	}
+
+	$effect(() => {
+		userState.win;
+		if (userState.win && !userState.isGameLoaded) {
+			setGameToHistory();
+		}
+	});
 </script>
 <div class="board-container">
 	{#if userState.board === '2D'}

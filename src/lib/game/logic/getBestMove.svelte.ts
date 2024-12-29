@@ -44,7 +44,7 @@ function findBestMove(
 		let bestScore = -Infinity;
 		let bestMove = filteredMoves[0].move;
 		filteredMoves.forEach((move) => {
-			board.push({ id: move.move, text: userState.playerTurn === 'X' ? 'O' : 'X' });
+			board.push({ id: move.move, text: userState.symbolBot });
 			const score = evaluateMove(board, move.move);
 			board.pop();
 
