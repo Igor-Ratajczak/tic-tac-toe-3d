@@ -1,0 +1,62 @@
+{
+  "hello": "Bienvenue dans le jeu du morpion 3D!",
+  "move": "Mouvement",
+  "win": "Gagne le joueur",
+  "draw": "Match nul",
+  "player": "Joueur",
+  "menu": {
+    "newGameFriend": "Nouveau jeu avec un ami",
+    "newGameBot": "Nouveau jeu avec le robot",
+    "saveGame": "Sauvegarder la partie",
+    "loadGame": "Charger le jeu",
+    "history": "Histoire",
+    "rules": "Règles",
+    "settings": "Paramètres"
+  },
+  "settings": {
+    "colorX": "Couleur X",
+    "colorO": "Couleur O",
+    "backgroundFields": "Arrière-plan des champs",
+    "borderFields": "Bordure du champ",
+    "backgroundWin": "Arrière-plan des champs gagnants",
+    "colorHighlight": "Couleur du dernier coup"
+  },
+  "windows": {
+    "newGameFriend": "Nouveau jeu avec un ami",
+    "newGameBot": "Nouveau jeu avec le robot",
+    "saveGame": "Sauvegarder la partie",
+    "loadGame": "Charger le jeu",
+    "history": "Histoire",
+    "rules": "Règles",
+    "settings": "Paramètres"
+  },
+  "newGame": {
+    "level": {
+      "label": "Sélectionner le niveau du bot:",
+      "easy": "facile",
+      "medium": "moyenne",
+      "hard": "difficile"
+    },
+    "levelInfo": {
+      "easy": "Peut souvent commettre des erreurs, mais sait comment attaquer",
+      "medium": "Un bot plus puissant, même s'il commet une erreur, peut attaquer",
+      "hard": "Avec ce robot, vous ne pouvez qu'espérer un tirage au sort. Il ne fera aucune erreur et ne pardonnera pas les vôtres"
+    },
+    "symbolBot": "Choisir le caractère du robot",
+    "firstPlayer": "Sélectionner le premier joueur:",
+    "play": "Jouer"
+  },
+  "saveGame": {
+    "notToSave": "Vous ne pouvez pas sauvegarder la partie. Commencez une partie pour pouvoir le faire",
+    "input": "Entrez le nom...",
+    "button": "Sauvegarder"
+  },
+  "noSavedGames": "Pas de jeux sauvegardés.",
+  "history": {
+    "noHistory": "Vous n'avez pas encore d'historique de jeu.",
+    "moves": "Mouvements:",
+    "opponent": "Opposant:",
+    "botDifficulty": "Niveau Bot:",
+    "preview": "Aperçu"
+  }
+}

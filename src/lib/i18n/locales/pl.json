@@ -1,0 +1,62 @@
+{
+  "hello": "Witaj w grze kółko i krzyżyk 3D!",
+  "move": "Ruch",
+  "win": "Wygrał gracz",
+  "draw": "Remis",
+  "player": "Gracz",
+  "menu": {
+    "newGameFriend": "Nowa gra z przyjacielem",
+    "newGameBot": "Nowa gra z botem",
+    "saveGame": "Zapisz grę",
+    "loadGame": "Wczytaj grę",
+    "history": "Historia",
+    "rules": "Zasady",
+    "settings": "Ustawienia"
+  },
+  "settings": {
+    "colorX": "Kolor X",
+    "colorO": "Kolor O",
+    "backgroundFields": "Tło pól",
+    "borderFields": "Obramowanie pól",
+    "backgroundWin": "Tło pól wygrywających",
+    "colorHighlight": "Kolor ostatniego ruchu"
+  },
+  "windows": {
+    "newGameFriend": "Nowa gra z przyjacielem",
+    "newGameBot": "Nowa gra z botem",
+    "saveGame": "Zapisz grę",
+    "loadGame": "Wczytaj grę",
+    "history": "Historia",
+    "rules": "Zasady",
+    "settings": "Ustawienia"
+  },
+  "newGame": {
+    "level": {
+      "label": "Wybierz poziom bota:",
+      "easy": "łatwy",
+      "medium": "średni",
+      "hard": "trudny"
+    },
+    "levelInfo": {
+      "easy": "Może często popełniać błędy, ale umie atakować",
+      "medium": "Mocniejszy bot, choć zdarza mu się popełnić błąd potrafi zaatakować",
+      "hard": "Z tym botem możesz liczyć tylko na remis. Nie popełni żadnego błędu, a twojego nie wybaczy"
+    },
+    "symbolBot": "Wybierz którym znakiem gra bot",
+    "firstPlayer": "Wybierz kto pierwszy gra:",
+    "play": "Graj"
+  },
+  "saveGame": {
+    "notToSave": "Nie możesz zapisać gry. Rozpocznij partię aby móc to zrobić",
+    "input": "Wpisz nazwę...",
+    "button": "Zapisz"
+  },
+  "noSavedGames": "Brak zapisanych gier.",
+  "history": {
+    "noHistory": "Nie masz jeszcze historii gry.",
+    "moves": "Ruchy:",
+    "opponent": "Przeciwnik:",
+    "botDifficulty": "Poziom bota:",
+    "preview": "Podgląd"
+  }
+}

@@ -3,32 +3,48 @@
 	import { globalSettings, userState } from '$lib/state.svelte.js';
 	import Windows from '$lib/window/Windows.svelte';
 	import Game from '$lib/game/Game.svelte';
+	import { t, locale } from 'svelte-i18n';
+	import { onMount } from 'svelte';
 
-	let text = $state('Witaj w grze kółko i krzyżyk');
+	let text = $state('');
+	let move = $state($t('move'));
+	let win = $state($t('win'));
+	let draw = $state($t('draw'));
+	let player = $state($t('player'));
 
 	$effect(() => {
 		if (userState.newGame)
-			text = `Ruch ${userState.moves.length} gracza ${userState.playerTurn}`;
+			text = `${move} ${userState.moves.length} ${player} ${userState.playerTurn}`;
 		if (userState.moves.length === 64)
-			text = `Remis`;
-		if (userState.moves.length < 64 && !userState.win)
-			text = `Ruch ${userState.moves.length} gracza ${userState.playerTurn}`;
+			text = draw;
+		if (userState.moves.length < 64 && userState.moves.length > 0 && !userState.win)
+			text = `${move} ${userState.moves.length} ${player} ${userState.playerTurn}`;
 		if (userState.win)
-			text = `Wygrał gracza ${userState.playerTurn === 'X' ? 'O' : 'X'}`;
+			text = `${win} ${userState.playerTurn === 'X' ? 'O' : 'X'}`;
+	});
+
+	locale.subscribe(() => {
+		move = $t('move');
+		win = $t('win');
+		draw = $t('draw');
+		player = $t('player');
 	});
 
 	const setBoard = (board: '2D' | '3D') => {
 		userState.board = board;
 	};
 
-	const settingsLS = localStorage.getItem('settings');
-	if (settingsLS)
-		globalSettings.set(JSON.parse(settingsLS));
+	onMount(() => {
+		const settingsLS = JSON.parse(localStorage.getItem('settings')!);
+		if (settingsLS && settingsLS.length > 0)
+			Object.assign(globalSettings, settingsLS);
+	});
 
 	let style = $state('');
 
-	globalSettings.subscribe((settings) => {
-		const settingsMap = Object.fromEntries(settings.map(setting => [setting.key, setting.value]));
+	$effect(() => {
+		globalSettings;
+		const settingsMap = Object.fromEntries(globalSettings.map(setting => [setting.key, setting.value]));
 		style = `
 		--color-x: ${settingsMap['colorX']};
 		--color-o: ${settingsMap['colorO']};
@@ -37,14 +53,14 @@
 		--background-win: ${settingsMap['backgroundWin']};
 		--color-highlight: ${settingsMap['colorHighlight']};
 	`;
-		localStorage.setItem('settings', JSON.stringify(settings));
+		localStorage.setItem('settings', JSON.stringify(globalSettings));
 	});
 
 
 </script>
 
 <div class="root" style={style}>
-	<h1>{ text }</h1>
+	<h1>{ text === "" ? $t('hello') : text}</h1>
 	<div class="select-board" style:--position-x_select-board-active="{userState.board === '2D' ? '-3%' : '53%'}">
 		<button onclick="{() => setBoard('2D')}">Plansza 2D</button>
 		<button onclick="{() => setBoard('3D')}">Plansza 3D</button>
@@ -66,6 +82,12 @@
       grid-row: 1;
       font-size: 2.5em;
       align-content: center;
+      padding-right: 5em;
+      text-align: center;
+
+      @media screen and (min-width: 772px) {
+        padding: 0;
+      }
     }
 
     .select-board {
