@@ -2,16 +2,36 @@
 	import { globalSettings } from '$lib/state.svelte';
 	import { fade } from 'svelte/transition';
 	import WindowContainer from '$lib/window/WindowContainer.svelte';
+	import { locale, locales, t } from 'svelte-i18n';
+
+	let index: number = $state(0);
+	let activeButtonLeft = $derived(index * 80);
+
+	function changeLanguage(lang: string) {
+		locale.set(lang);
+	}
+
+	locale.subscribe((locale) => {
+		index = $locales.indexOf(locale!.slice(0, 2));
+	});
 
 </script>
 
-<WindowContainer active_window="settings" window="large"
-								 In="scale" Out="fly">
-	<div class="settings">
-		{#each $globalSettings as setting}
+<WindowContainer active_window="settings" window="large" In="scale" Out="fly">
+	<div class="content settings">
+		<div class="setting">
+			<div class="languages" style={`--left-language-before: ${activeButtonLeft}px`}>
+				{#each $locales as locale_lang}
+					<button class="change-language"
+									aria-label="change language"
+									onclick={() => changeLanguage(locale_lang)}>{locale_lang}</button>
+				{/each}
+			</div>
+		</div>
+		{#each globalSettings as setting}
 			<div class="setting">
-				<div class="name">{setting.name}</div>
-				<input type="color" name={setting.name} id={setting.name} bind:value={setting.value}>
+				<label for="{setting.key}" class="name">{$t(`settings.${setting.key}`)}</label>
+				<input type="color" name={setting.key} id={setting.key} bind:value={setting.value}>
 				{#if setting.value !== setting.defaultValue}
 					<button transition:fade class="resetValue" aria-label="Reset"
 									onclick={() => setting.value = setting.defaultValue}>
@@ -25,14 +45,12 @@
 
 <style lang="less">
   .settings {
-    grid-row: 2;
     font-size: 4em;
     padding: 1em 0 1em 0;
     height: 100%;
     width: 100%;
     overflow: auto;
     gap: 2em;
-    display: grid;
 
     .setting {
       display: grid;
@@ -47,23 +65,35 @@
         align-items: center;
       }
 
-      input {
-        width: 50px;
-        height: 50px;
-        border-radius: 25px;
-        box-shadow: 0 0 20px 5px white;
+      .languages {
+        grid-column: 1/4;
+        width: max-content;
+        display: flex;
+        gap: 30px;
+        position: relative;
 
-        &[type="color"]::-webkit-color-swatch {
-          border: none;
-          border-radius: 10px;
-          padding: 0;
+        &::before {
+          content: '';
+          width: 50px;
+          height: 50px;
+          border-radius: 25px;
+          box-shadow: 0 0 20px 10px green;
+          position: absolute;
+          transition: left 0.5s ease-in-out;
+          left: var(--left-language-before);
         }
 
-        &[type="color"]::-webkit-color-swatch-wrapper {
-          border: none;
-          border-radius: 10px;
+        .change-language {
           padding: 0;
+          position: relative;
+          width: 50px;
+          height: 50px;
+          border-radius: 25px;
         }
+      }
+
+      .name {
+        text-align: center;
       }
 
       button {

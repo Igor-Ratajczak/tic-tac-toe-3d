@@ -3,6 +3,7 @@
 	import { linear } from 'svelte/easing';
 	import { fade, fly, scale, blur } from 'svelte/transition';
 	import type { Snippet } from 'svelte';
+	import { t } from 'svelte-i18n';
 
 	let visible = $state(true);
 
@@ -48,12 +49,16 @@
 		case 'blur':
 			transitionOut = blur;
 	}
+	$inspect(userState.active_window === active_window, userState.active_window, active_window);
 </script>
+
+<svelte:window onkeydown={(e) => e.key === "Escape" ? closeWindow() : null}></svelte:window>
+
 {#if userState.active_window === active_window}
 	<div class="window {visible ? null : 'hide'} {window}" in:transitionIn
 			 out:transitionOut>
 		<button class="close" onclick={() => closeWindow()}>X</button>
-		<h2 class="title">{userState.active_window}</h2>
+		<h2 class="title">{$t(`windows.${userState.active_window}`)}</h2>
 		{@render children()}
 	</div>
 {/if}
@@ -81,14 +86,13 @@
         }
 
         &.small {
-
             grid-template: 20% 80% / 90% 10%;
             border: 15px solid orange;
             border-image: linear-gradient(#041fda, #b2b2fa) 10;
 
             @media (min-width: 1000px) {
-                width: 40rem;
-                height: 20rem;
+                width: 50rem;
+                height: 30rem;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
@@ -110,6 +114,8 @@
         h2 {
             font-size: 5em;
             font-weight: bold;
+            text-align: center;
+            grid-column: 1/3;
         }
     }
 
