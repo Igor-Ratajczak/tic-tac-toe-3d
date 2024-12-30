@@ -17,7 +17,7 @@
 		children: Snippet
 		active_window: string;
 		window: 'large' | 'small'
-		In: 'scale' | 'fade'
+		In: 'scale' | 'fade' | 'scale-from-side'
 		Out: 'fly' | 'blur'
 	}
 
@@ -31,6 +31,18 @@
 		return fly(node, { x: 500, y: 500, duration: 1000 });
 	}
 
+	function scaleFromSide(node: Element) {
+		const style = getComputedStyle(node);
+		const transform = style.transform === 'none' ? '' : style.transform;
+
+		return {
+			duration: 800,
+			css: (t: number) => `
+				transform: ${transform} scale(${t}) translate(50%);
+				left: ${t - 52}%;
+			`
+		};
+	}
 
 	let transitionIn = $state(fade);
 	let transitionOut = $state(fade);
@@ -41,6 +53,10 @@
 			break;
 		case 'scale':
 			transitionIn = customScale;
+			break;
+		case 'scale-from-side':
+			transitionIn = scaleFromSide;
+			break;
 	}
 	switch (Out) {
 		case 'fly':
@@ -48,6 +64,7 @@
 			break;
 		case 'blur':
 			transitionOut = blur;
+			break;
 	}
 	$inspect(userState.active_window === active_window, userState.active_window, active_window);
 </script>
@@ -87,10 +104,10 @@
 
         &.small {
             grid-template: 20% 80% / 90% 10%;
-            border: 15px solid orange;
-            border-image: linear-gradient(#041fda, #b2b2fa) 10;
 
             @media (min-width: 1000px) {
+                border: 15px solid orange;
+                border-image: linear-gradient(#041fda, #b2b2fa) 10;
                 width: 50rem;
                 height: 30rem;
                 top: 50%;
@@ -116,6 +133,10 @@
             font-weight: bold;
             text-align: center;
             grid-column: 1/3;
+
+            @media (min-width: 720px) {
+                font-size: 4em;
+            }
         }
     }
 
