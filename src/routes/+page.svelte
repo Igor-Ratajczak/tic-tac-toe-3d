@@ -35,11 +35,18 @@
 		userState.board = board;
 	};
 
-	// load settings from local storage and update global settings
 	onMount(() => {
+		// load settings from local storage and update global settings
 		const settingsLS = JSON.parse(localStorage.getItem('settings')!);
 		if (settingsLS && settingsLS.length > 0)
 			Object.assign(globalSettings, settingsLS);
+
+		// load lang from local storage and set
+		const langLS: string = localStorage.getItem('lang') ?? navigator.language;
+
+		if (langLS) {
+			locale.set(langLS);
+		}
 	});
 
 	let style = $state('');
