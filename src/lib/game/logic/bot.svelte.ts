@@ -32,6 +32,7 @@ export function bot() {
 	});
 	checkWin(userState.moves);
 	userState.playerTurn = userState.playerTurn === 'X' ? 'O' : 'X';
+	localStorage.setItem('temporaryHistory', JSON.stringify(userState));
 }
 
 function getFirstMove(): string {

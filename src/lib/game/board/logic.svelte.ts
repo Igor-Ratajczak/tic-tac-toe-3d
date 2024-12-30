@@ -23,6 +23,7 @@ export const setNewMove = (fieldID: string) => {
 	});
 	userState.playerTurn = userState.playerTurn === 'O' ? 'X' : 'O';
 	userState.move++;
+	localStorage.setItem('temporaryHistory', JSON.stringify(userState));
 	checkWin(userState.moves);
 };
 
@@ -43,6 +44,7 @@ export const checkWin = (moves: Move[]) => {
 			) {
 				userState.win = true;
 				userState.winningFields = [a, b, c, d];
+				localStorage.setItem('temporaryHistory', 'null');
 			}
 		}
 	}

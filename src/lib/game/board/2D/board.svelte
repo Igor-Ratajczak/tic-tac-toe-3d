@@ -25,87 +25,91 @@
 </div>
 
 
-<style>
-    .board {
-        grid-row: 2;
-        display: grid;
-        grid-template-columns: repeat(4, 60px);
-        grid-template-rows: repeat(4, 60px);
-        border: 1px solid var(--border-fields);
-        aspect-ratio: 1;
-        width: calc(60px * 4);
-        height: calc(60px * 4);
+<style lang="less">
+  .board {
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: repeat(4, 60px);
+    grid-template-rows: repeat(4, 60px);
+    border: 1px solid var(--border-fields);
+    aspect-ratio: 1;
+    width: calc(60px * 4);
+    height: calc(60px * 4);
+
+    button {
+      border: 1px solid var(--border-fields);
+      cursor: pointer;
+      text-align: center;
+      align-content: center;
+      font-size: 3em;
+      background: var(--background-fields);
+      color: black;
+
+      @media screen and (min-width: 772px) {
+        &:hover {
+          background-color: var(--color-highlight);
+        }
+      }
+
+      &.highlight {
+        position: relative;
         background: var(--background-fields);
 
-        button {
-            border: 1px solid var(--border-fields);
-            cursor: pointer;
-            text-align: center;
-            align-content: center;
-            font-size: 3em;
-            color: black;
-
-            &&&.winning-field {
-                box-shadow: inset 0 0 10px 5px var(--background-win);
-                position: relative;
-
-                &::after {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    box-shadow: 0 0 10px 10px var(--background-win);
-                }
-            }
-
-            &.highlight {
-                position: relative;
-
-                &::after {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                }
-
-                &:is(&.X) {
-                    box-shadow: inset 0 0 10px 5px var(--color-x);
-
-                    &::after {
-                        box-shadow: 0 0 10px 5px var(--color-x);
-                    }
-                }
-
-                &:is(&.O) {
-                    box-shadow: inset 0 0 10px 5px var(--color-o);
-
-                    &::after {
-                        box-shadow: 0 0 10px 5px var(--color-o);
-                    }
-                }
-            }
-
-            @media screen and (min-width: 772px) {
-                &:hover {
-                    background-color: var(--color-highlight);
-                }
-            }
-
-            &:focus {
-                outline: 5px solid green
-            }
-
-            &.X {
-                color: var(--color-x);
-            }
-
-            &.O {
-                color: var(--color-o);
-            }
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
         }
+
+        &:is(&.X) {
+          box-shadow: inset 0 0 10px 5px var(--color-x);
+
+          &::after {
+            box-shadow: 0 0 10px 5px var(--color-x);
+          }
+        }
+
+        &:is(&.O) {
+          box-shadow: inset 0 0 10px 5px var(--color-o);
+
+          &::after {
+            box-shadow: 0 0 10px 5px var(--color-o);
+          }
+        }
+      }
+
+      &.winning-field.winning-field.winning-field.winning-field.winning-field {
+        box-shadow: inset 0 0 10px 5px var(--background-win);
+        position: relative;
+        background: var(--background-fields);
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          box-shadow: 0 0 10px 10px var(--background-win);
+        }
+      }
+
+
+      &:focus {
+        outline: 5px solid green;
+        z-index: 10;
+      }
+
+      &.X {
+        color: var(--color-x);
+      }
+
+      &.O {
+        color: var(--color-o);
+      }
     }
+  }
 </style>
