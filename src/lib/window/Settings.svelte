@@ -9,6 +9,7 @@
 
 	function changeLanguage(lang: string) {
 		locale.set(lang);
+		localStorage.setItem('lang', lang);
 	}
 
 	locale.subscribe((locale) => {
