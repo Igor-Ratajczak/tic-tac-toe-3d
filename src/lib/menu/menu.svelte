@@ -57,6 +57,7 @@
     user-select: none;
     overflow-y: auto;
     z-index: 10000;
+    justify-content: center;
 
     .close {
       position: absolute;

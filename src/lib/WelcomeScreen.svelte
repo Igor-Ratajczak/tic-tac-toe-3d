@@ -4,10 +4,12 @@
 	import NewGameBotIcon from '$lib/menu/icons/NewGameBotIcon.svelte';
 	import RulesIcon from '$lib/menu/icons/RulesIcon.svelte';
 	import { userState } from '$lib/state.svelte';
+	import { fade } from 'svelte/transition';
 
-	let welcomeScreen = $state(JSON.parse(localStorage.getItem('welcomeScreen')!) ?? true);
+	let welcomeScreen: boolean = $state(JSON.parse(localStorage.getItem('welcomeScreen')!) ?? true);
+	const currentYear = new Date().getUTCFullYear();
 
-	function closeWelcomeScreen() {
+	function hideWelcomeScreen() {
 		welcomeScreen = false;
 		localStorage.setItem('welcomeScreen', 'false');
 	}
@@ -23,16 +25,16 @@
 </script>
 
 {#if welcomeScreen}
-	<div class="welcome-screen">
+	<div class="welcome-screen" out:fade>
 		<h1>{$t('hello')}</h1>
-		<button class="close" onclick={() => closeWelcomeScreen()}>X</button>
+		<button class="close" onclick={() => hideWelcomeScreen()}>X</button>
 		<div class="buttons">
 			<NewGameFriendIcon />
 			<NewGameBotIcon />
 			<RulesIcon />
 		</div>
 		<div class="copyright">
-			Copyright © 2024-{new Date().getUTCFullYear()} Igor Ratajczak All Rights Reserved
+			Copyright © 2024-{currentYear} Igor Ratajczak All Rights Reserved
 		</div>
 	</div>
 {/if}

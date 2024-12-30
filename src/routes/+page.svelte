@@ -35,6 +35,7 @@
 		userState.board = board;
 	};
 
+	// load settings from local storage and update global settings
 	onMount(() => {
 		const settingsLS = JSON.parse(localStorage.getItem('settings')!);
 		if (settingsLS && settingsLS.length > 0)

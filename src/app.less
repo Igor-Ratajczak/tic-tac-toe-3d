@@ -79,7 +79,7 @@ body {
 
 .menu-button {
   cursor: pointer;
-  width: 60px;
+  width: max-content;
   height: 60px;
   display: flex;
   gap: 5em;
@@ -98,6 +98,8 @@ body {
   }
 
   @media screen and (min-width: 772px) {
+    width: 60px;
+    
     b {
       position: absolute;
       z-index: -1;
