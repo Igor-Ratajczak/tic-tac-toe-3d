@@ -7,8 +7,6 @@
 
 	let welcomeScreen = $state(JSON.parse(localStorage.getItem('welcomeScreen')!) ?? true);
 
-	$inspect(welcomeScreen);
-
 	function closeWelcomeScreen() {
 		welcomeScreen = false;
 		localStorage.setItem('welcomeScreen', 'false');
