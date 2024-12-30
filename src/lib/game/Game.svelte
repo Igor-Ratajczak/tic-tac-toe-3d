@@ -4,6 +4,16 @@
 	import { userState } from '$lib/state.svelte.js';
 	import { fly } from 'svelte/transition';
 	import { bot } from '$lib/game/logic/bot.svelte';
+	import { onMount } from 'svelte';
+
+	let temporaryHistory: GameHistory = JSON.parse(localStorage.getItem('temporaryHistory')!) || null;
+
+	onMount(() => {
+		if (temporaryHistory) {
+			Object.assign(userState, temporaryHistory);
+			userState.isGameLoaded = true;
+		}
+	});
 
 	$effect(() => {
 		if (userState.newGame && userState.opponent === 'bot' &&
