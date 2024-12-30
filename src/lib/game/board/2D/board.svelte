@@ -9,7 +9,7 @@
 </script>
 
 <div class="board">
-	{#each props.board as field, i}
+	{#each props.board as field}
 		<button
 			id={field.id}
 			class="rect
@@ -89,6 +89,11 @@
                 }
             }
 
+            @media screen and (min-width: 772px) {
+                &:hover {
+                    background-color: var(--color-highlight);
+                }
+            }
 
             &:focus {
                 outline: 5px solid green
