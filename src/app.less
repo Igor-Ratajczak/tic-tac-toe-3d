@@ -81,7 +81,9 @@ body {
   cursor: pointer;
   width: 60px;
   height: 60px;
-  align-content: center;
+  display: flex;
+  gap: 5em;
+  align-items: center;
   position: relative;
 
   @media screen and (max-height: 400px) {
@@ -90,10 +92,6 @@ body {
   }
 
   b {
-    position: absolute;
-    right: -50%;
-    top: 50%;
-    transform: translate(100%, -50%);
     width: max-content;
     height: max-content;
     font-size: 2em;
@@ -101,6 +99,7 @@ body {
 
   @media screen and (min-width: 772px) {
     b {
+      position: absolute;
       z-index: -1;
       padding: 1em;
       top: -75%;

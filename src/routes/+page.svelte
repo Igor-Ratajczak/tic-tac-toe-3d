@@ -5,6 +5,7 @@
 	import Game from '$lib/game/Game.svelte';
 	import { t, locale } from 'svelte-i18n';
 	import { onMount } from 'svelte';
+	import WelcomeScreen from '$lib/WelcomeScreen.svelte';
 
 	let text = $state('');
 	let move = $state($t('move'));
@@ -60,6 +61,7 @@
 </script>
 
 <div class="root" style={style}>
+	<WelcomeScreen />
 	<h1>{ text === "" ? $t('hello') : text}</h1>
 	<div class="select-board" style:--position-x_select-board-active="{userState.board === '2D' ? '-3%' : '53%'}">
 		<button onclick="{() => setBoard('2D')}">Plansza 2D</button>
