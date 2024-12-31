@@ -16,7 +16,6 @@ export default defineConfig({
 				name: 'Tic Tac Toe 3D',
 				short_name: 'Tic Tac Toe 3D',
 				description: 'Play Tic Tac Toe in a new dimension! A fun 3D twist on the classic game.',
-				id: '/tic-tac-toe-3d/',
 				start_url: '/tic-tac-toe-3d/',
 				scope: '/tic-tac-toe-3d/',
 				display: 'standalone',
