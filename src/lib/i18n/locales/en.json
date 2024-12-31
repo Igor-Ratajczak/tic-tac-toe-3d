@@ -2,7 +2,7 @@
   "hello": "Hello in game tic tac toe 3D!",
   "move": "Move",
   "win": "Win player",
-  "draw": "Draw",
+  "draw": "It's a draw",
   "player": "Player",
   "menu": {
     "newGameFriend": "New game with friend",
@@ -58,5 +58,17 @@
     "opponent": "Opponent:",
     "botDifficulty": "Bot level:",
     "preview": "Preview"
+  },
+  "rules": {
+    "title": "Rules of 3D Tic Tac Toe",
+    "description": "3D Tic Tac Toe is a variation of the classic game played on four boards. Your goal is to create a line of four symbols (X or O) in any direction.",
+    "step1": "Winning conditions are the same as in the basic version, but you need to align four symbols (X or O) in a line. Other winning patterns derive from the basic rules:",
+    "theSome": "When the 4 boards are stacked, you get the following effect:",
+    "rules1": "Horizontally in one line:",
+    "rules2": "Vertically in one line",
+    "rules3": "Diagonally in one line",
+    "rules4": "This one is more difficult",
+    "rules4Question": "After stacking the boards, you see that the Xs are in the same spots. So where is the line?",
+    "rules4-info": "You can see it when you rotate the stacked boards at a certain angle. The line becomes visible."
   }
 }

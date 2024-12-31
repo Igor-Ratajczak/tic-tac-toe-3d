@@ -18,7 +18,7 @@
 		active_window: string;
 		window: 'large' | 'small'
 		In: 'scale' | 'fade' | 'scale-from-side'
-		Out: 'fly' | 'blur'
+		Out: 'fly' | 'blur' | 'blur-fly'
 	}
 
 	let { children, active_window, window, In, Out }: Props = $props();
@@ -36,11 +36,25 @@
 		const transform = style.transform === 'none' ? '' : style.transform;
 
 		return {
-			duration: 800,
+			duration: 600,
 			css: (t: number) => `
 				transform: ${transform} scale(${t}) translate(50%);
 				left: ${t - 52}%;
 			`
+		};
+	}
+
+	function blurFly(node: Element) {
+		const style = getComputedStyle(node);
+		const transform = style.transform === 'none' ? '' : style.transform;
+
+		return {
+			duration: 800,
+			css: (t: number) => `
+      filter: blur(${(1 - t) * 5}px);
+      transform: ${transform} translateY(${(1 - t) * -50}%);
+      opacity: ${t};
+    `
 		};
 	}
 
@@ -65,8 +79,10 @@
 		case 'blur':
 			transitionOut = blur;
 			break;
+		case 'blur-fly':
+			transitionOut = blurFly;
+			break;
 	}
-	$inspect(userState.active_window === active_window, userState.active_window, active_window);
 </script>
 
 <svelte:window onkeydown={(e) => e.key === "Escape" ? closeWindow() : null}></svelte:window>
@@ -91,7 +107,7 @@
         width: 100vw;
         height: 100vh;
         display: grid;
-        z-index: 10000;
+        z-index: 120000;
         place-items: center;
         background: rgba(0, 0, 0, 0.84);
         transition: height 0.5s ease;
@@ -118,14 +134,6 @@
 
         &.hide {
             height: 0
-        }
-
-        .close {
-            font-size: 5em;
-            position: absolute;
-            top: 0;
-            right: 0;
-            margin: 10px 30px;
         }
 
         h2 {

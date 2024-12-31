@@ -39,7 +39,7 @@
     },
     "levelInfo": {
       "easy": "Może często popełniać błędy, ale umie atakować",
-      "medium": "Mocniejszy bot, choć zdarza mu się popełnić błąd potrafi zaatakować",
+      "medium": "Mocniejszy bot, choć zdarza mu się popełnić błąd, ale potrafi zaatakować",
       "hard": "Z tym botem możesz liczyć tylko na remis. Nie popełni żadnego błędu, a twojego nie wybaczy"
     },
     "symbolBot": "Wybierz którym znakiem gra bot",
@@ -58,5 +58,17 @@
     "opponent": "Przeciwnik:",
     "botDifficulty": "Poziom bota:",
     "preview": "Podgląd"
+  },
+  "rules": {
+    "title": "Zasady gry w kółko i krzyżyk 3D",
+    "description": "Kółko i krzyżyk 3D to wariacja klasycznej gry na czterech planszach. Twoim celem jest ułożenie linii złożonej z czterech symboli (X lub O) w dowolnym kierunku.",
+    "step1": "Wygrane są takie same jak w podstawowej wersji, tylko trzeba ustawić cztery znaki (X lub O) na linii. Pozostałe warianty wygranej wywodzą się od podstawowych:",
+    "theSome": "po nałożeniu 4 plansz uzyskujemy taki efekt:",
+    "rules1": "poziomo w jednej linii:",
+    "rules2": "pionowo w jednej linii",
+    "rules3": "diagonalnie w jednej linii",
+    "rules4": "tu już jest trudniej",
+    "rules4Question": "Po nałożeniu plansz na siebie widać że X-y są w tym samym miejscu to w takim razie gdzie ta linia?",
+    "rules4-info": "Można ją zobaczyć, kiedy obrócimy nałożone plansze pod pewnym kątem, to wówczas jest widoczna ta linia."
   }
 }

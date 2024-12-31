@@ -58,5 +58,17 @@
     "opponent": "Opposant:",
     "botDifficulty": "Niveau Bot:",
     "preview": "Aperçu"
+  },
+  "rules": {
+    "title": "Règles du jeu Tic Tac Toe 3D",
+    "description": "Le Tic Tac Toe 3D est une variante du jeu classique, jouée sur quatre plateaux. Votre objectif est de former une ligne composée de quatre symboles (X ou O) dans n'importe quelle direction.",
+    "step1": "Les conditions de victoire sont similaires à celles de la version classique, sauf qu'il faut aligner quatre symboles (X ou O) sur une ligne. Les autres variantes de victoire découlent des règles de base :",
+    "theSome": "Lorsque les 4 plateaux sont superposés, on obtient cet effet :",
+    "rules1": "Horizontalement sur une ligne :",
+    "rules2": "Verticalement sur une ligne",
+    "rules3": "Diagonalement sur une ligne",
+    "rules4": "Celui-ci est plus difficile",
+    "rules4Question": "Après avoir superposé les plateaux, on voit que les X sont aux mêmes endroits. Alors, où est la ligne ?",
+    "rules4-info": "On peut la voir en tournant les plateaux superposés selon un certain angle. La ligne devient alors visible."
   }
 }

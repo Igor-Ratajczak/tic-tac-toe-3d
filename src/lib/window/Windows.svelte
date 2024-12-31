@@ -5,6 +5,7 @@
 	import Settings from './Settings.svelte';
 	import LoadGame from '$lib/window/LoadGame.svelte';
 	import History from '$lib/window/History.svelte';
+	import Rules from '$lib/window/Rules.svelte';
 </script>
 
 <NewGameFriend />
@@ -12,4 +13,5 @@
 <SaveGame />
 <LoadGame />
 <History />
+<Rules />
 <Settings />
