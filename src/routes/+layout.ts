@@ -1,5 +1,5 @@
 export const ssr = false;
-export const prerender = false;
+export const prerender = true;
 import { browser } from '$app/environment';
 import '$lib/i18n';
 import { locale, waitLocale } from 'svelte-i18n';

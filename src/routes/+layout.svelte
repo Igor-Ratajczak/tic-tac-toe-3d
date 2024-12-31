@@ -2,10 +2,10 @@
 	import '../app.less';
 	import { pwaInfo } from 'virtual:pwa-info';
 	import { onMount } from 'svelte';
+	import { registerSW } from 'virtual:pwa-register';
 
 	onMount(async () => {
 		if (pwaInfo) {
-			const { registerSW } = await import('virtual:pwa-register');
 			registerSW({
 				immediate: true,
 				onRegisteredSW(swUrl, r) {

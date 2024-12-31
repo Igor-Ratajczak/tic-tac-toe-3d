@@ -6,18 +6,17 @@ export default defineConfig({
 	plugins: [
 		sveltekit(),
 		SvelteKitPWA({
-			base: './',
 			strategies: 'generateSW',
 			registerType: 'autoUpdate',
-			injectRegister: 'inline',
-			includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
-			workbox: { globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,webmanifest}', 'prerendered/**/*.html'] },
+			workbox: {
+				globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,webmanifest}', 'prerendered/**/*.html']
+			},
 			manifest: {
 				name: 'Tic Tac Toe 3D',
 				short_name: 'Tic Tac Toe 3D',
 				description: 'Play Tic Tac Toe in a new dimension! A fun 3D twist on the classic game.',
-				start_url: '/tic-tac-toe-3d/',
-				scope: '/tic-tac-toe-3d/',
+				id: './',
+				start_url: './',
 				display: 'standalone',
 				background_color: '#0000FF',
 				theme_color: '#800080',
