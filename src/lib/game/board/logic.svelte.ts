@@ -34,6 +34,8 @@ export const isLastMove = (id: string): boolean => {
 
 export const checkWin = (moves: Move[]) => {
 	if (moves.length === 63) {
+		userState.newGame = false;
+		localStorage.setItem('temporaryHistory', 'null');
 	} else {
 		for (const combination of getWinningCombinations()) {
 			const [a, b, c, d] = combination;
@@ -44,6 +46,7 @@ export const checkWin = (moves: Move[]) => {
 			) {
 				userState.win = true;
 				userState.winningFields = [a, b, c, d];
+				userState.newGame = false;
 				localStorage.setItem('temporaryHistory', 'null');
 			}
 		}
