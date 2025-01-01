@@ -16,6 +16,7 @@
   "settings": {
     "show": "Pokaż",
     "hide": "Ukryj",
+    "reset": "Resetuj",
     "colorX": "Kolor X",
     "colorO": "Kolor O",
     "backgroundFields": "Tło pól",

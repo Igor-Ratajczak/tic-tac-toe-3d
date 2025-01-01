@@ -71,9 +71,9 @@
 <div class="root" style={style}>
 	<WelcomeScreen />
 	<h1>{ text === "" ? $t('hello') : text}</h1>
-	<div class="select-board" style:--position-x_select-board-active="{userState.board === '2D' ? '-3%' : '53%'}">
-		<button onclick="{() => setBoard('2D')}">Plansza 2D</button>
-		<button onclick="{() => setBoard('3D')}">Plansza 3D</button>
+	<div class="select-board" style:--position-x_select-board-active="{userState.board === '2D' ? '-10%' : '60%'}">
+		<button onclick="{() => setBoard('2D')}">2D</button>
+		<button onclick="{() => setBoard('3D')}">3D</button>
 	</div>
 	<Game />
 	<Menu />

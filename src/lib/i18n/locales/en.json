@@ -16,6 +16,7 @@
   "settings": {
     "show": "Show",
     "hide": "Hide",
+    "reset": "Reset",
     "colorX": "Colour X",
     "colorO": "Colour O",
     "backgroundFields": "Field background",

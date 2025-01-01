@@ -16,6 +16,7 @@
   "settings": {
     "show": "Afficher",
     "hide": "Cacher",
+    "reset": "Réinitialiser",
     "colorX": "Couleur X",
     "colorO": "Couleur O",
     "backgroundFields": "Arrière-plan des champs",

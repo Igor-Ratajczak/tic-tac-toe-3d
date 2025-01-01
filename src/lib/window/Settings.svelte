@@ -36,7 +36,7 @@
 				{#if setting.value !== setting.defaultValue}
 					<button transition:fade class="resetValue" aria-label="Reset"
 									onclick={() => setting.value = setting.defaultValue}>
-						Zresetuj
+						{$t('settings.reset')}
 					</button>
 				{/if}
 			</div>
