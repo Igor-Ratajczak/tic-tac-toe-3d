@@ -56,6 +56,7 @@
   "noSavedGames": "No saved games.",
   "history": {
     "noHistory": "You don't have a game history yet.",
+    "remove": "Remove all history",
     "moves": "Moves:",
     "opponent": "Opponent:",
     "botDifficulty": "Bot level:",

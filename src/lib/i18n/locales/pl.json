@@ -56,6 +56,7 @@
   "noSavedGames": "Brak zapisanych gier.",
   "history": {
     "noHistory": "Nie masz jeszcze historii gry.",
+    "remove": "Usuń całą historię",
     "moves": "Ruchy:",
     "opponent": "Przeciwnik:",
     "botDifficulty": "Poziom bota:",

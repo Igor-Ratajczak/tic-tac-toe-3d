@@ -39,11 +39,18 @@
 		userState.window = false;
 		userState.active_window = 'game';
 	}
+
+	function removeHistory() {
+		localStorage.removeItem('history');
+		allHistory = [];
+		groupedHistory = [];
+	}
 </script>
 
 <WindowContainer active_window="history" window="large" In="scale-from-side" Out="blur">
 	<div class="content allHistory">
 		{#if groupedHistory.length > 0}
+			<button class="remove" onclick={() => removeHistory()}>{$t("history.remove")}</button>
 			{#each groupedHistory as { date, games }}
 				<div class="groupedHistory">
 					<button onclick={()=> active === date ? active = "" : active = date}>{date}</button>
@@ -87,6 +94,11 @@
     width: 100%;
     align-self: baseline;
     align-content: baseline;
+
+    .remove {
+      width: max-content;
+      justify-self: center;
+    }
 
     &:not(:has(.groupedHistory)) {
       align-self: center;

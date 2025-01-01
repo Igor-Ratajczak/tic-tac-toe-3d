@@ -56,6 +56,7 @@
   "noSavedGames": "Pas de jeux sauvegardés.",
   "history": {
     "noHistory": "Vous n'avez pas encore d'historique de jeu.",
+    "remove": "Supprimer toute l'historique",
     "moves": "Mouvements:",
     "opponent": "Opposant:",
     "botDifficulty": "Niveau Bot:",
