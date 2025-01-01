@@ -9,7 +9,7 @@ export default defineConfig({
 			strategies: 'generateSW',
 			registerType: 'autoUpdate',
 			workbox: {
-				globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,webmanifest}', 'prerendered/**/*.html']
+				globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,webmanifest,woff,hdr}', 'prerendered/**/*.html']
 			},
 			manifest: {
 				name: 'Tic Tac Toe 3D',
