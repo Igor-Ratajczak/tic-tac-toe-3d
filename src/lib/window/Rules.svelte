@@ -1,5 +1,15 @@
 <script>
 	import WindowContainer from '$lib/window/WindowContainer.svelte';
+	import rulesHorizontal from '$lib/assets/rules/rules-horizontal.png';
+	import rulesHorizontalOne from '$lib/assets/rules/rules-horizontal-one-board.png';
+	import rulesVertical from '$lib/assets/rules/rules-vertical.png';
+	import rulesVerticalOne from '$lib/assets/rules/rules-vertical-one-board.png';
+	import rulesDiagonally from '$lib/assets/rules/rules-diagonally.png';
+	import rulesDiagonallyOne from '$lib/assets/rules/rules-diagonally-one-board.png';
+	import rules4 from '$lib/assets/rules/rules-4.png';
+	import rules4One from '$lib/assets/rules/rules-4-one-board.png';
+	import rules4Info from '$lib/assets/rules/rules-4-info.png';
+
 	import { t } from 'svelte-i18n';
 </script>
 <WindowContainer active_window="rules" window="large" In="fade" Out="blur-fly">
@@ -8,26 +18,30 @@
 		{$t("rules.step1")}
 		<ol>
 			<li>{$t("rules.rules1")}
-				<img src="/rules/rules-horizontal.png" alt="winning rules horizontal">
+				<img src={rulesHorizontal} alt="winning rules horizontal">
 				{$t("rules.theSome")}
-				<img class="small" src="/rules/rules-horizontal-one-board.png" alt="winning rules horizontal on one board">
+				<img class="small" src={rulesHorizontalOne} alt="winning rules horizontal on one board">
 			</li>
 			<li>{$t("rules.rules2")}
-				<img src="/rules/rules-vertical.png" alt="winning rules vertical">
+				<img src={rulesVertical} alt="winning rules vertical">
 				{$t("rules.theSome")}
-				<img class="small" src="/rules/rules-vertical-one-board.png" alt="winning rules vertical on one board">
+				<img class="small" src={rulesVerticalOne}
+						 alt="winning rules vertical on one board">
 			</li>
 			<li>{$t("rules.rules3")}
-				<img src="/rules/rules-diagonally.png" alt="winning rules diagonally">
+				<img src={rulesDiagonally} alt="winning rules diagonally">
 				{$t("rules.theSome")}
-				<img class="small" src="/rules/rules-diagonally-one-board.png" alt="winning rules diagonally on one board">
+				<img class="small" src={rulesDiagonallyOne}
+						 alt="winning rules diagonally on one board">
 			</li>
 			<li>{$t("rules.rules4")}
-				<img src="/rules/rules-4.png" alt="winning rules diagonally">
+				<img src={rules4} alt="winning rules on the same place">
 				{$t("rules.rules4Question")}
-				<img class="small" src="/rules/rules-4-one-board.png" alt="winning rules diagonally on one board">
+				<img class="small" src={rules4One}
+						 alt="winning rules on the same place on one board">
 				{$t("rules.rules4-info")}
-				<img class="small" src="/rules/rules-4-info.png" alt="winning rules diagonally on rotated boards">
+				<img class="small" src={rules4Info}
+						 alt="winning rules on the same place on rotated boards">
 			</li>
 		</ol>
 	</div>
