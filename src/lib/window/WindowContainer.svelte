@@ -156,7 +156,7 @@
         border: 2px solid green;
         padding: 10px;
         border-radius: 15px;
-        z-index: 10000;
+        z-index: 120001;
         background: black;
     }
 </style>
