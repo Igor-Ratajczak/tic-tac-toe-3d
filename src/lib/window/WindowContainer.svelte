@@ -96,7 +96,8 @@
 	</div>
 {/if}
 {#if userState.active_window === 'settings'}
-	<button class="preview" onclick={()=>visible = !visible}>{visible ? 'Ukryj' : 'Pokaż'}</button>
+	<button class="preview"
+					onclick={()=>visible = !visible}>{visible ? $t("settings.hide") : $t("settings.show")}</button>
 {/if}
 
 <style>
