@@ -18,10 +18,7 @@ Check out the live version here: [Live Demo](https://igor-ratajczak.github.io/ti
 
 ## Demo Video
 
-<details>
-<summary>Click to show</summary>
 <video src="https://github.com/user-attachments/assets/cf8456ef-f561-4ca7-bbe5-c9a33022ad04" playsinline width="100" height="100" controls></video>
-</details>
 
 ## Why?
 
