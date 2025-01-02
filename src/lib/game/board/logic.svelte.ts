@@ -21,6 +21,7 @@ export const setNewMove = (fieldID: string) => {
 		id: fieldID,
 		text: userState.playerTurn
 	});
+	userState.isGameLoaded = false;
 	userState.playerTurn = userState.playerTurn === 'O' ? 'X' : 'O';
 	userState.move++;
 	localStorage.setItem('temporaryHistory', JSON.stringify(userState));
