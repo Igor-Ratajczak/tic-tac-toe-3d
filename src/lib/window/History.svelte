@@ -3,14 +3,14 @@
 	import { t } from 'svelte-i18n';
 	import { userState } from '$lib/state.svelte';
 
-	let allHistory: GameHistory[] = $state(JSON.parse(localStorage.getItem('history')!) || []);
+	let allHistory: GameHistory[] = $state(JSON.parse(localStorage.getItem('tic-tac-toe-3d_history')!) || []);
 	let groupedHistory: { date: string; games: GameHistory[] }[] = $state([]);
 	let active = $state('');
 
 	$effect(() => {
 		userState.active_window;
 		if (userState.active_window === 'history')
-			allHistory = JSON.parse(localStorage.getItem('history')!) || [];
+			allHistory = JSON.parse(localStorage.getItem('tic-tac-toe-3d_history')!) || [];
 	});
 
 
@@ -41,7 +41,7 @@
 	}
 
 	function removeHistory() {
-		localStorage.removeItem('history');
+		localStorage.removeItem('tic-tac-toe-3d_history');
 		allHistory = [];
 		groupedHistory = [];
 	}

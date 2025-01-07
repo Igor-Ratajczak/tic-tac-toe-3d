@@ -24,7 +24,7 @@ export const setNewMove = (fieldID: string) => {
 	userState.isGameLoaded = false;
 	userState.playerTurn = userState.playerTurn === 'O' ? 'X' : 'O';
 	userState.move++;
-	localStorage.setItem('temporaryHistory', JSON.stringify(userState));
+	localStorage.setItem('tic-tac-toe-3d_temporaryHistory', JSON.stringify(userState));
 	checkWin(userState.moves);
 };
 
@@ -36,7 +36,7 @@ export const isLastMove = (id: string): boolean => {
 export const checkWin = (moves: Move[]) => {
 	if (moves.length === 63) {
 		userState.newGame = false;
-		localStorage.removeItem('temporaryHistory');
+		localStorage.removeItem('tic-tac-toe-3d_temporaryHistory');
 	} else {
 		for (const combination of getWinningCombinations()) {
 			const [a, b, c, d] = combination;
@@ -48,7 +48,7 @@ export const checkWin = (moves: Move[]) => {
 				userState.win = true;
 				userState.winningFields = [a, b, c, d];
 				userState.newGame = false;
-				localStorage.removeItem('temporaryHistory');
+				localStorage.removeItem('tic-tac-toe-3d_temporaryHistory');
 			}
 		}
 	}

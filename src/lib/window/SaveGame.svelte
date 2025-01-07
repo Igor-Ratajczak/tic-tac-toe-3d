@@ -7,7 +7,7 @@
 
 	function saveGame() {
 		let savedGames: SavedGame[] = [];
-		let savedGamesLS = localStorage.getItem('savedGames');
+		let savedGamesLS = localStorage.getItem('tic-tac-toe-3d_savedGames');
 		if (savedGamesLS) {
 			savedGames = JSON.parse(savedGamesLS);
 		}
@@ -18,7 +18,7 @@
 				...userState
 			}
 		});
-		localStorage.setItem('savedGames', JSON.stringify(savedGames));
+		localStorage.setItem('tic-tac-toe-3d_savedGames', JSON.stringify(savedGames));
 		userState.window = false;
 		userState.active_window = 'game';
 	}

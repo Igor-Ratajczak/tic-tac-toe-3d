@@ -6,7 +6,13 @@
 
 
 	let botLevel: BotLevels = $state('easy');
-	let playerTurn: 'X' | 'O' = $state(userState.playerTurn);
+	let playerTurn: 'X' | 'O' = $state(userState.playerTurn === 'X' ? 'O' : 'X');
+
+	$effect(() => {
+		userState.win;
+		if (userState.win === true)
+			playerTurn = userState.playerTurn;
+	});
 
 </script>
 

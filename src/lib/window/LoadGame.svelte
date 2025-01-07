@@ -3,7 +3,7 @@
 	import { t } from 'svelte-i18n';
 	import { userState } from '$lib/state.svelte';
 
-	let savedGames: SavedGame[] = $state(JSON.parse(localStorage.getItem('savedGames')!) || []);
+	let savedGames: SavedGame[] = $state(JSON.parse(localStorage.getItem('tic-tac-toe-3d_savedGames')!) || []);
 
 	function loadGame(savedGame: SavedGame) {
 		savedGame.state.window = false;
@@ -16,7 +16,7 @@
 	$effect(() => {
 		userState.active_window;
 		if (userState.active_window === 'loadGame')
-			savedGames = JSON.parse(localStorage.getItem('savedGames')!) || [];
+			savedGames = JSON.parse(localStorage.getItem('tic-tac-toe-3d_savedGames')!) || [];
 	});
 </script>
 

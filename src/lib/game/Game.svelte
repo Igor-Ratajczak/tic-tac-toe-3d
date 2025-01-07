@@ -6,7 +6,7 @@
 	import { bot } from '$lib/game/logic/bot.svelte';
 	import { onMount } from 'svelte';
 
-	let temporaryHistory: GameHistory = JSON.parse(localStorage.getItem('temporaryHistory')!) || null;
+	let temporaryHistory: GameHistory = JSON.parse(localStorage.getItem('tic-tac-toe-3d_temporaryHistory')!) || null;
 
 	onMount(() => {
 		if (temporaryHistory) {
@@ -25,7 +25,7 @@
 	});
 
 	function setGameToHistory() {
-		let gameHistory: GameHistory[] = JSON.parse(localStorage.getItem('history') || '[]');
+		let gameHistory: GameHistory[] = JSON.parse(localStorage.getItem('tic-tac-toe-3d_history') || '[]');
 
 		gameHistory.push({
 			time: new Date().toLocaleString(),
@@ -34,7 +34,7 @@
 			botDifficulty: userState.botDifficulty
 		});
 
-		localStorage.setItem('history', JSON.stringify(gameHistory));
+		localStorage.setItem('tic-tac-toe-3d_history', JSON.stringify(gameHistory));
 	}
 
 	$effect(() => {

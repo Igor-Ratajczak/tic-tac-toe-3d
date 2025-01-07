@@ -37,12 +37,12 @@
 
 	onMount(() => {
 		// load settings from local storage and update global settings
-		const settingsLS = JSON.parse(localStorage.getItem('settings')!);
+		const settingsLS = JSON.parse(localStorage.getItem('tic-tac-toe-3d_settings')!);
 		if (settingsLS && settingsLS.length > 0)
 			Object.assign(globalSettings, settingsLS);
 
 		// load lang from local storage and set
-		const langLS: string = localStorage.getItem('lang') ?? navigator.language;
+		const langLS: string = localStorage.getItem('tic-tac-toe-3d_lang') ?? navigator.language;
 
 		if (langLS) {
 			locale.set(langLS);
@@ -62,7 +62,7 @@
 		--background-win: ${settingsMap['backgroundWin']};
 		--color-highlight: ${settingsMap['colorHighlight']};
 	`;
-		localStorage.setItem('settings', JSON.stringify(globalSettings));
+		localStorage.setItem('tic-tac-toe-3d_settings', JSON.stringify(globalSettings));
 	});
 
 

@@ -30,9 +30,9 @@ export function bot() {
 		id: move,
 		text: userState.playerTurn
 	});
-	checkWin(userState.moves);
 	userState.playerTurn = userState.playerTurn === 'X' ? 'O' : 'X';
-	localStorage.setItem('temporaryHistory', JSON.stringify(userState));
+	localStorage.setItem('tic-tac-toe-3d_temporaryHistory', JSON.stringify(userState));
+	checkWin(userState.moves);
 }
 
 function getFirstMove(): string {

@@ -9,7 +9,7 @@
 
 	function changeLanguage(lang: string) {
 		locale.set(lang);
-		localStorage.setItem('lang', lang);
+		localStorage.setItem('tic-tac-toe-3d_lang', lang);
 	}
 
 	locale.subscribe((locale) => {

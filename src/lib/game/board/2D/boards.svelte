@@ -40,7 +40,6 @@
 					}
 				});
 			});
-			checkWin(userState.moves);
 		} else {
 			boards.forEach(board => {
 				board.board.forEach((field) => {

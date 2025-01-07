@@ -7,7 +7,7 @@ export function newGame(playerTurn: 'X' | 'O', level?: BotLevels) {
 	} else {
 		userState.opponent = 'player';
 	}
-	localStorage.removeItem('temporaryHistory');
+	localStorage.removeItem('tic-tac-toe-3d_temporaryHistory');
 	userState.isGameLoaded = false;
 	userState.playerTurn = playerTurn;
 	userState.window = false;

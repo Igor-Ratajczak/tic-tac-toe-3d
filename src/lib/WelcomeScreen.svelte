@@ -6,12 +6,12 @@
 	import { userState } from '$lib/state.svelte';
 	import { fade } from 'svelte/transition';
 
-	let welcomeScreen: boolean = $state(JSON.parse(localStorage.getItem('welcomeScreen')!) ?? true);
+	let welcomeScreen: boolean = $state(JSON.parse(localStorage.getItem('tic-tac-toe-3d_welcomeScreen')!) ?? true);
 	const currentYear = new Date().getUTCFullYear();
 
 	function hideWelcomeScreen() {
 		welcomeScreen = false;
-		localStorage.setItem('welcomeScreen', 'false');
+		localStorage.setItem('tic-tac-toe-3d_welcomeScreen', 'false');
 	}
 
 	$effect(() => {
@@ -19,7 +19,7 @@
 		if (userState.active_window === 'newGameFriend' ||
 			userState.active_window === 'newGameBot') {
 			welcomeScreen = false;
-			localStorage.setItem('welcomeScreen', 'false');
+			localStorage.setItem('tic-tac-toe-3d_welcomeScreen', 'false');
 		}
 	});
 </script>
