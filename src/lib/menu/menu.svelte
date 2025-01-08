@@ -49,8 +49,9 @@
     display: grid;
     gap: 32px;
     padding: 50px 20px 20px 20px;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
+    height: 100svh;
     position: fixed;
     bottom: 0;
     background-color: rgba(9, 9, 9, 0.8);
